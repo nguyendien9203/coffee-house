@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" styleClass="white-bg" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.RegisterController">
+   <children>
+      <Label layoutX="98.0" layoutY="42.0" styleClass="logo" stylesheets="@style/style.css" text="CoffeeHouse" textAlignment="CENTER">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="100.0" layoutY="96.0" text="Chào mừng bạn đến với CoffeeHouse" textAlignment="CENTER" />
+      <Label layoutX="128.0" layoutY="132.0" text="Đăng ký tài khoản" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fullname" layoutX="66.0" layoutY="174.0" prefHeight="43.0" prefWidth="267.0" promptText="Họ và tên" styleClass="field" stylesheets="@style/style.css" />
+      <PasswordField fx:id="confirmPassword" layoutX="66.0" layoutY="344.0" prefHeight="43.0" prefWidth="267.0" promptText="Nhập lại mật khẩu" styleClass="field" stylesheets="@style/style.css" />
+      <Button fx:id="btnRegister" layoutX="66.0" layoutY="421.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="267.0" styleClass="btn" stylesheets="@style/style.css" text="Đăng ký" textAlignment="CENTER" textFill="#150800" />
+      <Label layoutX="97.0" layoutY="540.0" text="Bạn đã có tài khoản?" textAlignment="CENTER" />
+      <Hyperlink fx:id="btnLogin" layoutX="207.0" layoutY="537.0" onAction="#redirectLogin" styleClass="link" stylesheets="@style/style.css" text="Đăng nhập ngay" textAlignment="CENTER" />
+      <TextField fx:id="username" layoutX="66.0" layoutY="230.0" prefHeight="43.0" prefWidth="267.0" promptText="Tài khoản" styleClass="field" stylesheets="@style/style.css" />
+      <PasswordField fx:id="password" layoutX="66.0" layoutY="287.0" prefHeight="43.0" prefWidth="267.0" promptText="Nhập mật khẩu" styleClass="field" stylesheets="@style/style.css" />
+   </children>
+</AnchorPane>
