@@ -24,9 +24,6 @@ public class RegisterController {
     private PasswordField confirmPassword;
 
     @FXML
-    private TextField fullname;
-
-    @FXML
     private PasswordField password;
 
     @FXML
