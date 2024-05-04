@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.RegisterController">
+<AnchorPane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.RegisterController">
    <children>
       <Label layoutX="100.0" layoutY="133.0" text="Chào mừng bạn đến với CoffeeHouse" textAlignment="CENTER" />
       <Label layoutX="128.0" layoutY="173.0" text="Đăng ký tài khoản" textAlignment="CENTER">
@@ -28,7 +28,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </FontAwesomeIcon>
-            <TextField fx:id="username" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Tài khoản" style="-fx-background-color: transparent; -fx-border-color: none;">
+            <TextField fx:id="txt_username" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Tài khoản" style="-fx-background-color: transparent; -fx-border-color: none;">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -42,7 +42,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </FontAwesomeIcon>
-            <PasswordField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
+            <PasswordField fx:id="txt_password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -68,7 +68,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </FontAwesomeIcon>
-            <PasswordField fx:id="confirmPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập lại mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
+            <PasswordField fx:id="txt_confirmPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập lại mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
                <padding>
                   <Insets left="10.0" />
                </padding>
