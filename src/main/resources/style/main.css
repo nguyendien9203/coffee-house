@@ -1,0 +1,8 @@
+.table-view {
+    -fx-background-color:  #FFFAF4;
+}
+
+.table-view .column-header{
+    -fx-size: 35px;
+    -fx-background-color: transparent;
+}
