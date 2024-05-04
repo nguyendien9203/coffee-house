@@ -21,7 +21,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER_LEFT" layoutX="62.0" layoutY="207.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 50px;">
+      <HBox alignment="CENTER_LEFT" layoutX="62.0" layoutY="207.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 5px;">
          <children>
             <FontAwesomeIcon fill="#e1e1e1" glyphName="USER" size="1.3em">
                <HBox.margin>
@@ -35,7 +35,7 @@
             </TextField>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="63.0" layoutY="254.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 50px;">
+      <HBox alignment="CENTER_LEFT" layoutX="63.0" layoutY="254.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 5px;">
          <children>
             <FontAwesomeIcon fill="#e1e1e1" glyphName="LOCK" size="1.3em">
                <HBox.margin>
@@ -50,7 +50,7 @@
          </children>
       </HBox>
       <Hyperlink fx:id="btnForgetPassword" layoutX="242.0" layoutY="296.0" onAction="#redirectForgetPassword" text="Quên mật khẩu?" textAlignment="RIGHT" textFill="#966c3a" />
-      <Button fx:id="btnLogin" layoutX="62.0" layoutY="340.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: #966C3A; -fx-background-radius: 50px;" text="Đăng nhập" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnLogin" layoutX="62.0" layoutY="340.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: #966C3A; -fx-background-radius: 5px;" text="Đăng nhập" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Button>

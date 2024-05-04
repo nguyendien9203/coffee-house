@@ -1,0 +1,14 @@
+.sidebar {
+    -fx-background-color: #fff;
+}
+
+.item{
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+}
+
+.item:hover {
+    -fx-background-color: #966C3A;
+    -fx-background-radius: 50%;
+    -fx-cursor: hand;
+}
