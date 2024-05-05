@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
 import vn.aptech.c2304l.learning.constant.UserRole;
 import vn.aptech.c2304l.learning.constant.UserStatus;
-import vn.aptech.c2304l.learning.context.UserDAO;
+import vn.aptech.c2304l.learning.dal.UserDAO;
 import vn.aptech.c2304l.learning.model.User;
 import vn.aptech.c2304l.learning.utils.BcryptUtil;
 import vn.aptech.c2304l.learning.utils.ShowAlert;
@@ -22,29 +22,29 @@ import vn.aptech.c2304l.learning.utils.ShowAlert;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class RegisterController implements Initializable{
+public class RegisterController implements Initializable {
 
     private BcryptUtil bcryptUtil = BcryptUtil.getInstance();
 
     @FXML
-    private PasswordField txt_password;
+    private PasswordField txtConfirmPassword;
 
     @FXML
-    private TextField txt_username;
+    private TextField txtFullname;
+
+    @FXML
+    private PasswordField txtPassword;
+
+    @FXML
+    private TextField txtUsername;
+
 
     @FXML
     private Hyperlink btnLogin;
 
     @FXML
     private Button btnRegister;
-
-    @FXML
-    private PasswordField txt_confirmPassword;
-
-
 
     @FXML
     public void redirectLogin() {
@@ -69,20 +69,20 @@ public class RegisterController implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         btnRegister.setOnAction(eh -> {
-            String username = txt_username.getText();
-            String password = txt_password.getText();
+            String fullname = txtFullname.getText().trim();
+            String username = txtUsername.getText().trim();
+            String password = txtPassword.getText().trim();
+            String confirmPassword = txtConfirmPassword.getText().trim();
 
-            String repassword = txt_confirmPassword.getText();
-
-            if (username.isBlank() || password.isBlank() || repassword.isBlank()) {
+            if (fullname.isBlank() || username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
                 ShowAlert alert = new ShowAlert();
                 alert.showAlert("Lỗi", "Vui lòng nhập đầy đủ thông tin.");
                 return;
             }
 
-            if (!password.equals(repassword)) {
+            if (!fullname.matches("^[a-zA-Z\\d]+$")) {
                 ShowAlert alert = new ShowAlert();
-                alert.showAlert("Lỗi", "Mật khẩu không khớp.");
+                alert.showAlert("Lỗi","Tên người dùng chỉ chứa chữ cái in thường, in hoa và khoảng trắng");
                 return;
             }
 
@@ -98,6 +98,12 @@ public class RegisterController implements Initializable{
                 return;
             }
 
+            if (!password.equals(confirmPassword.trim())) {
+                ShowAlert alert = new ShowAlert();
+                alert.showAlert("Lỗi", "Mật khẩu không khớp.");
+                return;
+            }
+
             UserDAO userDAO = new UserDAO();
             if (userDAO.checkUsernameExists(username)) {
                 ShowAlert alert = new ShowAlert();
@@ -108,12 +114,12 @@ public class RegisterController implements Initializable{
             String hashPassword = bcryptUtil.hashPassword(password);
 
             User user = new User();
+            user.setRole(UserRole.EMPLOYEE);
+            user.setFullname(fullname);
             user.setUsername(username);
             user.setPassword(hashPassword);
-            user.setRole(UserRole.EMPLOYEE);
             user.setStatus(UserStatus.ACTIVE);
-            boolean checker = userDAO.registerUser(user);
-            if (checker) {
+            if (userDAO.registerUser(user)) {
                 ShowAlert alert = new ShowAlert();
                 alert.showAlert("Success", "Đăng kí thành công.");
 
@@ -138,7 +144,8 @@ public class RegisterController implements Initializable{
         });
     }
 
-    
+
+
 }
 
 

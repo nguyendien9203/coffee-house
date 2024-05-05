@@ -28,7 +28,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </FontAwesomeIcon>
-            <TextField fx:id="username" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập tên tài khoản" style="-fx-background-color: transparent; -fx-border-color: none;">
+            <TextField fx:id="txtUsername" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập tên tài khoản" style="-fx-background-color: transparent; -fx-border-color: none;">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -42,7 +42,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </FontAwesomeIcon>
-            <PasswordField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
+            <PasswordField fx:id="txtPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -68,7 +68,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </FontAwesomeIcon>
-            <PasswordField fx:id="confirmPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập lại mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
+            <PasswordField fx:id="txtConfirmPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập lại mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -82,7 +82,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </FontAwesomeIcon>
-            <TextField fx:id="username1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập tên người dùng" style="-fx-background-color: transparent; -fx-border-color: none;">
+            <TextField fx:id="txtFullname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập tên người dùng" style="-fx-background-color: transparent; -fx-border-color: none;">
                <padding>
                   <Insets left="10.0" />
                </padding>

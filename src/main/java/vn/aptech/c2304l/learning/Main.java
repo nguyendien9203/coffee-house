@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("/menu.fxml"));
+        Parent root = FXMLLoader.load(Main.class.getResource("/login.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Login");
         stage.setResizable(false); // Đặt cửa sổ không thể thay đổi kích thước

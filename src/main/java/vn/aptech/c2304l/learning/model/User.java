@@ -3,6 +3,7 @@ package vn.aptech.c2304l.learning.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import vn.aptech.c2304l.learning.constant.UserRole;
 import vn.aptech.c2304l.learning.constant.UserStatus;
 
 @Data
@@ -11,7 +12,7 @@ import vn.aptech.c2304l.learning.constant.UserStatus;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
     int id;
-    String role;
+    UserRole role;
     String fullname;
     String username;
     String password;
