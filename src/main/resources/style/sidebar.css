@@ -12,3 +12,9 @@
     -fx-background-radius: 50%;
     -fx-cursor: hand;
 }
+
+.item:focused {
+    -fx-background-color: #966C3A;
+    -fx-background-radius: 50%;
+    -fx-cursor: hand;
+}

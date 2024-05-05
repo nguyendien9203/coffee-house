@@ -1,16 +1,17 @@
 CREATE TABLE `users` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
-  `role` VARCHAR(255),
-  `username` VARCHAR(50) unique,
-  `password` VARCHAR(50),
-  `status` VARCHAR(20),
+  `role` VARCHAR(50) NOT NULL,
+  `fullname` VARCHAR(50),
+  `username` VARCHAR(50) NOT NULL UNIQUE,
+  `password` VARCHAR(50) NOT NULL,
+  `status` VARCHAR(20) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `categories` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
-  `name` VARCHAR(50),
+  `name` VARCHAR(50) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -18,34 +19,34 @@ CREATE TABLE `categories` (
 CREATE TABLE `products` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `category_id` INT,
-  `name` VARCHAR(255),
-  `price` DECIMAL(10,2),
+  `name` VARCHAR(255) NOT NULL,
+  `price` DECIMAL(10,2) NOT NULL,
   `product_image` VARCHAR(500),
   `description` VARCHAR(200),
-  `status` VARCHAR(30),
+  `status` VARCHAR(30) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `tables` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
-  `table_number` INT,
-  `num_of_seats` INT,
-  `status` VARCHAR(30),
+  `table_number` INT NOT NULL,
+  `num_of_seats` INT NOT NULL,
+  `status` VARCHAR(30) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `orders` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
-  `user_id` INT,
-  `product_id` INT,
+  `user_id` INT NOT NULL,
+  `product_id` INT NOT NULL,
   `table_id` INT,
-  `payment_method` VARCHAR(50),
-  `order_date` DATETIME,
-  `qty` INT,
+  `payment_method` VARCHAR(50) NOT NULL,
+  `order_date` DATETIME NOT NULL,
+  `qty` INT NOT NULL,
   `order_note` VARCHAR(255),
-  `status` VARCHAR(30),
+  `status` VARCHAR(30) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
