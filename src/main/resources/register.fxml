@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.RegisterController">
+<AnchorPane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.RegisterController">
    <children>
       <Label layoutX="100.0" layoutY="133.0" text="Chào mừng bạn đến với CoffeeHouse" textAlignment="CENTER" />
       <Label layoutX="128.0" layoutY="173.0" text="Đăng ký tài khoản" textAlignment="CENTER">
@@ -21,6 +21,60 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <HBox alignment="CENTER_LEFT" layoutX="63.0" layoutY="254.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 5px;">
+         <children>
+            <FontAwesomeIcon fill="#e1e1e1" glyphName="USER" size="1.3em">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
+            <TextField fx:id="txtUsername" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập tên tài khoản" style="-fx-background-color: transparent; -fx-border-color: none;">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="64.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 5px;">
+         <children>
+            <FontAwesomeIcon fill="#e1e1e1" glyphName="LOCK" size="1.3em">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
+            <PasswordField fx:id="txtPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </PasswordField>
+         </children>
+      </HBox>
+      <Button fx:id="btnRegister" layoutX="63.0" layoutY="412.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: #966C3A; -fx-background-radius: 5px;" text="Đăng ký" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="98.0" layoutY="507.0" text="Bạn đã có tài khoản?" textAlignment="CENTER" />
+      <Hyperlink fx:id="btnLogin" layoutX="208.0" layoutY="504.0" onAction="#redirectLogin" text="Đăng nhập ngay" textAlignment="CENTER" textFill="#966c3a" />
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="149.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/logo.png" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER_LEFT" layoutX="63.0" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 5px;">
+         <children>
+            <FontAwesomeIcon fill="#e1e1e1" glyphName="LOCK" size="1.3em">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
+            <PasswordField fx:id="txtConfirmPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập lại mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </PasswordField>
+         </children>
+      </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="62.0" layoutY="207.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 5px;">
          <children>
             <FontAwesomeIcon fill="#e1e1e1" glyphName="USER" size="1.3em">
@@ -28,51 +82,11 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </FontAwesomeIcon>
-            <TextField fx:id="txt_username" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Tài khoản" style="-fx-background-color: transparent; -fx-border-color: none;">
+            <TextField fx:id="txtFullname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập tên người dùng" style="-fx-background-color: transparent; -fx-border-color: none;">
                <padding>
                   <Insets left="10.0" />
                </padding>
             </TextField>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="63.0" layoutY="254.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 5px;">
-         <children>
-            <FontAwesomeIcon fill="#e1e1e1" glyphName="LOCK" size="1.3em">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </FontAwesomeIcon>
-            <PasswordField fx:id="txt_password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </PasswordField>
-         </children>
-      </HBox>
-      <Button fx:id="btnRegister" layoutX="62.0" layoutY="366.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: #966C3A; -fx-background-radius: 5px;" text="Đăng ký" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Label layoutX="97.0" layoutY="461.0" text="Bạn đã có tài khoản?" textAlignment="CENTER" />
-      <Hyperlink fx:id="btnLogin" layoutX="207.0" layoutY="458.0" onAction="#redirectLogin" text="Đăng nhập ngay" textAlignment="CENTER" textFill="#966c3a" />
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="149.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@image/logo.png" />
-         </image>
-      </ImageView>
-      <HBox alignment="CENTER_LEFT" layoutX="62.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 5px;">
-         <children>
-            <FontAwesomeIcon fill="#e1e1e1" glyphName="LOCK" size="1.3em">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </FontAwesomeIcon>
-            <PasswordField fx:id="txt_confirmPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập lại mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </PasswordField>
          </children>
       </HBox>
    </children>

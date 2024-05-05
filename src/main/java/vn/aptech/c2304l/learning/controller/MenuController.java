@@ -4,11 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
 
-public class ProductController {
+public class MenuController{
 
     @FXML
     private VBox btnAuthentication;
@@ -36,26 +37,26 @@ public class ProductController {
 
     @FXML
     public void initialize() {
-        btnProduct.requestFocus();
-        btnProduct.setFocusTraversable(true);
+        btnMenu.requestFocus();
+        btnMenu.setFocusTraversable(true);
     }
 
     @FXML
-    public void redirectMenu() {
+    public void redirectProduct() {
         try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/menu.fxml"));
+            Parent root = FXMLLoader.load(Main.class.getResource("/product.fxml"));
 
             Scene scene = new Scene(root);
 
 
-            Stage stage = (Stage) btnMenu.getScene().getWindow();
-            stage.setTitle("Menu");
+            Stage stage = (Stage) btnProduct.getScene().getWindow();
+            stage.setTitle("Sản phẩm");
             stage.setResizable(false);
 
             stage.setScene(scene);
             stage.show();
         }  catch (Exception e) {
-            System.out.println("redirectMenu(): " + e.getMessage());
+            System.out.println("redirectProduct(): " + e.getMessage());
         }
     }
 
@@ -172,5 +173,6 @@ public class ProductController {
             System.out.println("redirectLogin(): " + e.getMessage());
         }
     }
+
 
 }

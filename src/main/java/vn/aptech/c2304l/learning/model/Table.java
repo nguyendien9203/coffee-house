@@ -14,5 +14,6 @@ import vn.aptech.c2304l.learning.constant.TableStatus;
 public class Table {
     int id;
     int tableNumber;
+    int numOfSeats;
     TableStatus status;
 }

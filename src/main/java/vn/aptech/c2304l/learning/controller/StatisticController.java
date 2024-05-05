@@ -4,11 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
 
-public class ProductController {
+public class StatisticController {
 
     @FXML
     private VBox btnAuthentication;
@@ -17,7 +18,7 @@ public class ProductController {
     private VBox btnCategory;
 
     @FXML
-    private VBox btnLogout;
+    private Label btnLogout;
 
     @FXML
     private VBox btnMenu;
@@ -36,8 +37,8 @@ public class ProductController {
 
     @FXML
     public void initialize() {
-        btnProduct.requestFocus();
-        btnProduct.setFocusTraversable(true);
+        btnStatistic.requestFocus();
+        btnStatistic.setFocusTraversable(true);
     }
 
     @FXML
@@ -117,21 +118,21 @@ public class ProductController {
     }
 
     @FXML
-    public void redirectStatistic() {
+    public void redirectProduct() {
         try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/statistic.fxml"));
+            Parent root = FXMLLoader.load(Main.class.getResource("/product.fxml"));
 
             Scene scene = new Scene(root);
 
 
-            Stage stage = (Stage) btnStatistic.getScene().getWindow();
-            stage.setTitle("Thông kê");
+            Stage stage = (Stage) btnProduct.getScene().getWindow();
+            stage.setTitle("Sản phẩm");
             stage.setResizable(false);
 
             stage.setScene(scene);
             stage.show();
         }  catch (Exception e) {
-            System.out.println("redirectStatistic(): " + e.getMessage());
+            System.out.println("redirectProduct(): " + e.getMessage());
         }
     }
 

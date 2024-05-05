@@ -13,6 +13,7 @@ import vn.aptech.c2304l.learning.constant.UserStatus;
 public class User {
     int id;
     UserRole role;
+    String fullname;
     String username;
     String password;
     UserStatus status;
