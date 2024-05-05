@@ -1,8 +1,8 @@
 CREATE TABLE `users` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `role` VARCHAR(255),
-  `username` VARCHAR(50) unique,
-  `password` VARCHAR(50),
+  `username` VARCHAR(50) unique not null,
+  `password` VARCHAR(200) not null,
   `status` VARCHAR(20),
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
