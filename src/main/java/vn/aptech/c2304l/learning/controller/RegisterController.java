@@ -17,7 +17,7 @@ import vn.aptech.c2304l.learning.constant.UserStatus;
 import vn.aptech.c2304l.learning.dal.UserDAO;
 import vn.aptech.c2304l.learning.model.User;
 import vn.aptech.c2304l.learning.utils.BcryptUtil;
-import vn.aptech.c2304l.learning.utils.ShowAlert;
+import vn.aptech.c2304l.learning.utils.AlertNotification;
 
 import java.io.IOException;
 import java.net.URL;
@@ -75,39 +75,39 @@ public class RegisterController implements Initializable {
             String confirmPassword = txtConfirmPassword.getText().trim();
 
             if (fullname.isBlank() || username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
-                ShowAlert alert = new ShowAlert();
-                alert.showAlert("Lỗi", "Vui lòng nhập đầy đủ thông tin.");
+                AlertNotification alert = new AlertNotification();
+                alert.showAlert("Thông báo", "Vui lòng nhập đầy đủ thông tin.");
                 return;
             }
 
             if (!fullname.matches("^[a-zA-Z\\d]+$")) {
-                ShowAlert alert = new ShowAlert();
-                alert.showAlert("Lỗi","Tên người dùng chỉ chứa chữ cái in thường, in hoa và khoảng trắng");
+                AlertNotification alert = new AlertNotification();
+                alert.showAlert("Thông báo","Tên người dùng chỉ chứa chữ cái in thường, in hoa và khoảng trắng");
                 return;
             }
 
             if (!username.matches("^[a-z0-9]+$")) {
-                ShowAlert alert = new ShowAlert();
-                alert.showAlert("Lỗi","Tên đăng nhập chỉ chứa số hoặc chữ cái in thường");
+                AlertNotification alert = new AlertNotification();
+                alert.showAlert("Thông báo","Tên đăng nhập chỉ chứa số hoặc chữ cái in thường");
                 return;
             }
 
             if (!password.matches("^[a-z0-9]{8,}$")) {
-                ShowAlert alert = new ShowAlert();
-                alert.showAlert("Lỗi","Mật khẩu phải ít nhất 8 ký tự, có chứa ít nhất 1 số, 1 chữ cái in thường");
+                AlertNotification alert = new AlertNotification();
+                alert.showAlert("Thông báo","Mật khẩu phải ít nhất 8 ký tự, có chứa ít nhất 1 số, 1 chữ cái in thường");
                 return;
             }
 
             if (!password.equals(confirmPassword.trim())) {
-                ShowAlert alert = new ShowAlert();
-                alert.showAlert("Lỗi", "Mật khẩu không khớp.");
+                AlertNotification alert = new AlertNotification();
+                alert.showAlert("Thông báo", "Mật khẩu không khớp.");
                 return;
             }
 
             UserDAO userDAO = new UserDAO();
             if (userDAO.checkUsernameExists(username)) {
-                ShowAlert alert = new ShowAlert();
-                alert.showAlert("Lỗi", "Tài khoản đã tồn tại.");
+                AlertNotification alert = new AlertNotification();
+                alert.showAlert("Thông báo", "Tài khoản đã tồn tại.");
                 return;
             }
 
@@ -120,8 +120,8 @@ public class RegisterController implements Initializable {
             user.setPassword(hashPassword);
             user.setStatus(UserStatus.ACTIVE);
             if (userDAO.registerUser(user)) {
-                ShowAlert alert = new ShowAlert();
-                alert.showAlert("Success", "Đăng kí thành công.");
+                AlertNotification alert = new AlertNotification();
+                alert.showAlert("Thông báo", "Đăng kí thành công.");
 
                 Parent root = null;
                 try {
@@ -138,8 +138,8 @@ public class RegisterController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             } else {
-                ShowAlert alert = new ShowAlert();
-                alert.showAlert("Error", "Đăng kí thất bại.");
+                AlertNotification alert = new AlertNotification();
+                alert.showAlert("Thông báo", "Đăng kí thất bại.");
             }
         });
     }
