@@ -49,7 +49,6 @@ public class UserDAO extends DBContext {
             return resultSet.next();
         } catch (SQLException e) {
             System.out.println("checkUsernameExists(): " + e.getMessage());
-
         } finally {
             if (stm != null) {
                 try {

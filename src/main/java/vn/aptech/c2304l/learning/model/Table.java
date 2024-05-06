@@ -15,5 +15,4 @@ public class Table {
     int id;
     int tableNumber;
     int numOfSeats;
-    TableStatus status;
 }
