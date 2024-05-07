@@ -32,7 +32,6 @@ CREATE TABLE `tables` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `table_number` INT NOT NULL,
   `num_of_seats` INT NOT NULL,
-  `status` VARCHAR(30) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -41,7 +40,7 @@ CREATE TABLE `orders` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `product_id` INT NOT NULL,
-  `table_id` INT,
+  `table_id` INT NOT NULL,
   `payment_method` VARCHAR(50) NOT NULL,
   `order_date` DATETIME NOT NULL,
   `qty` INT NOT NULL,

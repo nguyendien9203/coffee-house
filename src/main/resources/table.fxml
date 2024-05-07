@@ -130,7 +130,7 @@
                                 </Label>
                             </children>
                         </HBox>
-                  <AnchorPane fx:id="tableForm" layoutY="92.80000305175781">
+                  <AnchorPane layoutY="92.80000305175781">
                      <children>
                               <TableView fx:id="tableView" layoutY="43.0" prefHeight="540.0" prefWidth="766.0" style="-fx-background-color: #FFFAF4;-fx-alignment: CENTER;">
                                   <columns>
@@ -144,7 +144,7 @@
                               </TableView>
                               <AnchorPane layoutX="786.4000244140625" prefHeight="584.0" prefWidth="304.0" style="-fx-background-color: #FFFAF4;" AnchorPane.bottomAnchor="0.0">
                                   <children>
-                                      <TextField fx:id="txtId" visible="false"/>
+                                      <TextField fx:id="txtId" visible="false" />
                                       <VBox layoutX="34.0" layoutY="14.0" prefHeight="60.0" prefWidth="235.0">
                                           <children>
                                               <Label text="Số bàn">
@@ -172,23 +172,23 @@
                               </AnchorPane>
                         <HBox layoutX="78.4000015258789" layoutY="0.1999969482421875" prefHeight="35.0" prefWidth="688.0">
                            <children>
-                              <ComboBox fx:id="btnFilter" prefHeight="35.0" prefWidth="130.0" promptText="Lọc" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" />
-                              <Button fx:id="btnImport" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" text="Nhập">
+                              <ComboBox fx:id="filter" prefHeight="35.0" prefWidth="130.0" promptText="Lọc theo số ghế" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" />
+                              <Button fx:id="btnImport" mnemonicParsing="false" onAction="#importFromExcel" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" text="Nhập">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="btnExport" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" text="Xuất">
+                              <Button fx:id="btnExport" mnemonicParsing="false" onAction="#exportToExcel" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" text="Xuất">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <TextField fx:id="txtSearch" prefHeight="35.0" prefWidth="250.0" promptText="Tìm kiếm số bàn" style="-fx-background-color: transparant; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;">
+                              <TextField fx:id="txtSearch" prefHeight="35.0" prefWidth="250.0" promptText="Tìm kiếm số bàn hoặc số ghế" style="-fx-background-color: transparant; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;">
                                  <HBox.margin>
                                     <Insets left="70.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="btnSearch" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: transparant; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;" text="Tìm">
+                              <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#search" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: transparant; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;" text="Tìm">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
