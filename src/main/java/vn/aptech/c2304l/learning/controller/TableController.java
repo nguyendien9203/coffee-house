@@ -9,15 +9,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import vn.aptech.c2304l.learning.Main;
 import vn.aptech.c2304l.learning.dal.TableDAO;
 import vn.aptech.c2304l.learning.model.Table;
 import vn.aptech.c2304l.learning.utils.AlertConfirmation;
 import vn.aptech.c2304l.learning.utils.AlertNotification;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,28 +37,13 @@ public class TableController implements Initializable {
     private AlertConfirmation alertConfirmation = new AlertConfirmation();
 
     @FXML
-    private Button btnAdd;
-
-    @FXML
     private VBox btnAuthentication;
 
     @FXML
     private VBox btnCategory;
 
     @FXML
-    private Button btnDelete;
-
-    @FXML
-    private Button btnEdit;
-
-    @FXML
-    private Button btnExport;
-
-    @FXML
-    private ComboBox<?> btnFilter;
-
-    @FXML
-    private Button btnImport;
+    private ComboBox<Integer> filter;
 
     @FXML
     private VBox btnLogout;
@@ -64,9 +56,6 @@ public class TableController implements Initializable {
 
     @FXML
     private VBox btnProduct;
-
-    @FXML
-    private Button btnSearch;
 
     @FXML
     private VBox btnStatistic;
@@ -82,9 +71,6 @@ public class TableController implements Initializable {
 
     @FXML
     private TableColumn<Table, Integer> colTableNumber;
-
-    @FXML
-    private AnchorPane tableForm;
 
     @FXML
     private ComboBox<Integer> txtNumOfSeats;
@@ -111,6 +97,7 @@ public class TableController implements Initializable {
 
         ObservableList listData = FXCollections.observableArrayList(numOfSeats);
         txtNumOfSeats.setItems(listData);
+        filter.setItems(listData);
     }
 
     private int id;
@@ -118,8 +105,7 @@ public class TableController implements Initializable {
     private int numOfSeats;
 
     private boolean checkField() {
-        String idStr = txtId.getText();
-        String tableNumberStr = txtTableNumbers.getText();
+        String tableNumberStr = txtTableNumbers.getText().trim();
         Object numOfSeatsObj = txtNumOfSeats.getValue();
 
         if(tableNumberStr.isBlank() || numOfSeatsObj == null) {
@@ -127,7 +113,6 @@ public class TableController implements Initializable {
             return false;
         }
 
-        id = Integer.parseInt(idStr);
         tableNumber = Integer.parseInt(tableNumberStr);
         numOfSeats = Integer.parseInt(numOfSeatsObj.toString());
         return true;
@@ -143,34 +128,6 @@ public class TableController implements Initializable {
         tableView.setItems(listData);
     }
 
-    @FXML
-    public void insert() {
-        if(!checkField()) {
-            return;
-        }
-
-        if(tdao.findByTableNumber(tableNumber)) {
-            alertNotification.showAlert("Thông báo", "Số bàn đã tồn tại");
-            return;
-        }
-
-        Table table = new Table();
-        table.setTableNumber(tableNumber);
-        table.setNumOfSeats(numOfSeats);
-
-
-        if(tdao.insert(table)) {
-            alertNotification.showAlert("Thông báo", "Thêm thành công");
-
-            txtTableNumbers.clear();
-            txtNumOfSeats.getSelectionModel().clearSelection();
-
-            findAll();
-        }else {
-            alertNotification.showAlert("Thông báo", "Thêm thất bại");
-        }
-    }
-
     // Phương thức để thêm sự kiện lắng nghe vào TableView và hiển thị giá trị của hàng được chọn vào các trường tương ứng
     private void addTableViewSelectionListener() {
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -183,14 +140,46 @@ public class TableController implements Initializable {
     }
 
     @FXML
+    public void insert() {
+        if(!checkField()) {
+            return;
+        }
+
+        if(tdao.findByTableNumber(tableNumber)) {
+            alertNotification.showAlert("Thông báo", "Bàn số " + tableNumber + " đã tồn tại");
+            return;
+        }
+
+        Table table = new Table();
+        table.setTableNumber(tableNumber);
+        table.setNumOfSeats(numOfSeats);
+
+
+        if(tdao.insert(table)) {
+            alertNotification.showAlert("Thông báo", "Thêm bàn số " + tableNumber + " thành công");
+
+            txtTableNumbers.clear();
+            txtNumOfSeats.getSelectionModel().clearSelection();
+
+            findAll();
+        }else {
+            alertNotification.showAlert("Thông báo", "Thêm bàn số " + tableNumber + " thất bại");
+        }
+    }
+
+    @FXML
     public void update() {
         if(!checkField()) {
             return;
         }
 
         if(tdao.findByTableNumberAndSeats(tableNumber, numOfSeats)) {
-            alertNotification.showAlert("Thông báo", "Bàn này đã tồn tại");
+            alertNotification.showAlert("Thông báo", "Bàn số " + tableNumber + " đã tồn tại");
             return;
+        }
+
+        if(txtId.getText() != null) {
+            id = Integer.parseInt(txtId.getText().trim());
         }
 
         Table table = new Table();
@@ -200,14 +189,14 @@ public class TableController implements Initializable {
         table.setNumOfSeats(numOfSeats);
 
         if(tdao.update(table)) {
-            alertNotification.showAlert("Thông báo", "Cập nhật thành công");
+            alertNotification.showAlert("Thông báo", "Cập nhật bàn số " + tableNumber + " thành công");
 
             txtTableNumbers.clear();
             txtNumOfSeats.getSelectionModel().clearSelection();
 
             findAll();
         }else {
-            alertNotification.showAlert("Thông báo", "Cập nhật thất bại");
+            alertNotification.showAlert("Thông báo", "Cập nhật bàn số " + tableNumber + " thất bại");
         }
     }
 
@@ -217,30 +206,124 @@ public class TableController implements Initializable {
             return;
         }
 
+        if(txtId.getText() != null) {
+            id = Integer.parseInt(txtId.getText().trim());
+        }
+
         Table table = new Table();
 
         table.setId(id);
 
-        boolean alertConfirm = alertConfirmation.showAlert("Thông báo", "Bạn muốn xóa bàn này?");
+        boolean alertConfirm = alertConfirmation.showAlert("Thông báo", "Bạn muốn xóa bàn số " + tableNumber + "?");
 
         if(alertConfirm) {
             if(tdao.delete(table.getId())) {
-                alertNotification.showAlert("Thông báo", "Xóa thành công");
+                alertNotification.showAlert("Thông báo", "Xóa bàn số " + tableNumber + " thành công");
 
                 txtTableNumbers.clear();
                 txtNumOfSeats.getSelectionModel().clearSelection();
 
                 findAll();
             }else {
-                alertNotification.showAlert("Thông báo", "Xóa thất bại");
+                alertNotification.showAlert("Thông báo", "Xóa bàn số " + tableNumber + " thất bại");
             }
         }
     }
 
+    @FXML
+    public void search() {
+        String keyWord = txtSearch.getText().trim();
+        ObservableList<Table> searchResult = tdao.search(keyWord);
+        tableView.setItems(searchResult);
+    }
+
+    @FXML
+    public void exportToExcel() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xls", "*.xlsx"));
+        File file = fileChooser.showSaveDialog(null);
+
+        if (file != null) {
+            try (Workbook workbook = new HSSFWorkbook()) {
+                Sheet sheet = workbook.createSheet("Table Data");
+
+                // Write header row
+                Row headerRow = sheet.createRow(0);
+                headerRow.createCell(0).setCellValue("Table Number");
+                headerRow.createCell(1).setCellValue("Number of Seats");
+
+                // Write data rows
+                ObservableList<Table> tableData = tableView.getItems();
+                for (int i = 0; i < tableData.size(); i++) {
+                    Table table = tableData.get(i);
+                    Row dataRow = sheet.createRow(i + 1);
+                    dataRow.createCell(0).setCellValue(table.getTableNumber());
+                    dataRow.createCell(1).setCellValue(table.getNumOfSeats());
+                }
+
+                // Write to file
+                try (FileOutputStream fileOut = new FileOutputStream(file)) {
+                    try {
+                        workbook.write(fileOut);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    alertNotification.showAlert("Thông báo", "Dữ liệu đã được xuất ra file Excel thành công.");
+                } catch (IOException e) {
+                    alertNotification.showAlert("Thông báo", "Xuất dữ liệu ra file Excel thất bại: " + e.getMessage());
+                }
+            } catch (IOException e) {
+                alertNotification.showAlert("Thông báo", "Xuất dữ liệu ra file Excel thất bại: " + e.getMessage());
+            }
+        }
+    }
+
+    @FXML
+    public void importFromExcel() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xls", "*.xlsx"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            try (FileInputStream fileIn = new FileInputStream(selectedFile)) {
+                Workbook workbook = new HSSFWorkbook(fileIn);
+                Sheet sheet = workbook.getSheetAt(0);
+
+                boolean flag = false;
 
 
+                for (Row row : sheet) {
+                    if (row.getRowNum() == 0) continue; // Skip header row
 
+                    int tableNumber = (int) row.getCell(0).getNumericCellValue();
+                    int numOfSeats = (int) row.getCell(1).getNumericCellValue();
 
+                    if(tdao.findByTableNumber(tableNumber)) {
+                        alertNotification.showAlert("Thông báo", "Bàn số " + tableNumber + " đã tồn tại");
+                        return;
+                    }
+
+                    Table table = new Table();
+                    table.setTableNumber(tableNumber);
+                    table.setNumOfSeats(numOfSeats);
+
+                    if(tdao.insert(table)) {
+                        flag = true;
+                    }
+                }
+
+                if(flag) {
+                    alertNotification.showAlert("Thông báo", "Dữ liệu đã được nhập từ file Excel thành công.");
+                    findAll();
+                } else {
+                    alertNotification.showAlert("Thông báo", "Không có dữ liệu nào được nhập từ file Excel.");
+                }
+
+            } catch (IOException e) {
+                alertNotification.showAlert("Thông báo", "Nhập dữ liệu từ file Excel thất bại: " + e.getMessage());
+            }
+        }
+    }
 
 
 
@@ -254,6 +337,13 @@ public class TableController implements Initializable {
         numOfSeats();
         findAll();
         addTableViewSelectionListener();
+
+        filter.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                ObservableList<Table> filteredTables = tdao.filter(newSelection);
+                tableView.setItems(filteredTables);
+            }
+        });
 
     }
 
