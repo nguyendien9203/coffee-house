@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.MenuController">
+    <left>
+        <AnchorPane prefHeight="70.0" prefWidth="150.0" styleClass="sidebar" stylesheets="@style/sidebar.css" BorderPane.alignment="CENTER">
+            <children>
+                <VBox fx:id="btnProduct" alignment="CENTER" layoutX="40.0" layoutY="152.0" onMouseClicked="#redirectProduct" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="INBOX" selectionFill="#ebebeb" size="2em" />
+                        <Label text="Sản phẩm" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox fx:id="btnOrder" alignment="CENTER" layoutX="40.0" layoutY="362.0" onMouseClicked="#redirectOrder" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="SHOPPING_CART" selectionFill="#ebebeb" size="2em" />
+                        <Label alignment="CENTER" styleClass="item-label" stylesheets="@style/sidebar.css" text="Hóa đơn" textAlignment="CENTER" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox fx:id="btnStatistic" alignment="CENTER" layoutX="40.0" layoutY="432.0" onMouseClicked="#redirectStatistic" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="BAR_CHART" selectionFill="#ebebeb" size="2em" />
+                        <Label alignment="CENTER" text="Thống kê" textAlignment="CENTER" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox fx:id="btnAuthentication" alignment="CENTER" layoutX="40.0" layoutY="502.0" onMouseClicked="#redirectAuthentication" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="USERS" selectionFill="#ebebeb" size="2em" />
+                        <Label alignment="CENTER" text="Phân quyền" textAlignment="CENTER" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox fx:id="btnLogout" alignment="CENTER" layoutX="40.0" layoutY="615.0" onMouseClicked="#redirectLogin" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css" AnchorPane.bottomAnchor="14.599999999999994" AnchorPane.leftAnchor="40.0">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="SIGN_OUT" selectionFill="#ebebeb" size="2em" />
+                        <Label alignment="CENTER" text="Đăng xuất" textAlignment="CENTER" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox fx:id="btnMenu" alignment="CENTER" layoutX="40.0" layoutY="82.0" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="ALIGN_JUSTIFY" size="2em" />
+                        <Label text="Menu" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="25.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image/logo.png" />
+                    </image>
+                </ImageView>
+                <VBox fx:id="btnTable" alignment="CENTER" layoutX="40.0" layoutY="222.0" onMouseClicked="#redirectTable" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="TABLE" selectionFill="#ebebeb" size="2em" />
+                        <Label text="Bàn" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox fx:id="btnCategory" alignment="CENTER" layoutX="40.0" layoutY="292.0" onMouseClicked="#redirectCategory" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="CALENDAR" selectionFill="#ebebeb" size="2em" />
+                        <Label alignment="CENTER" styleClass="item-label" stylesheets="@style/sidebar.css" text="Danh mục" textAlignment="CENTER" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </left>
+    <center>
+        <AnchorPane prefHeight="100.0" prefWidth="1130.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+            <children>
+                <AnchorPane prefHeight="700.0" prefWidth="1130.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" layoutX="878.0" layoutY="28.0" prefHeight="40.0" prefWidth="211.0" style="-fx-background-color: #FFFAF4; -fx-background-radius: 50px;" AnchorPane.rightAnchor="40.39999999999992" AnchorPane.topAnchor="28.0">
+                            <children>
+                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@image/user_847969.png" />
+                                    </image>
+                                </ImageView>
+                                <Label text="Admin">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets left="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <Label layoutY="98.0" text="Coffee table" textFill="#966c3a">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <ScrollPane layoutY="131.2" prefHeight="547.0" prefWidth="1086.0" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="131.0">
+                            <content>
+                                <GridPane hgap="20.0" layoutX="2.0" layoutY="209.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="1086.0" vgap="20.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="377.59999999999997" minWidth="10.0" prefWidth="355.1999450683594" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="355.2000427246094" minWidth="10.0" prefWidth="354.4000549316406" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="355.2000427246094" minWidth="10.0" prefWidth="354.4000549316406" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="355.2000427246094" minWidth="10.0" prefWidth="354.4000549316406" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <AnchorPane prefHeight="216.0" prefWidth="172.0" />
+                                    </children>
+                                </GridPane>
+                            </content>
+                        </ScrollPane>
+                  <HBox alignment="CENTER" layoutX="786.0" layoutY="89.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #FFFAF4; -fx-background-radius: 5px;" AnchorPane.rightAnchor="43.59999999999991">
+                     <children>
+                        <Label prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: #000; -fx-background-radius: 50%;" />
+                        <Label text="Còn trống">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: #966C3A; -fx-background-radius: 50%;">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="Đang đặt">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>

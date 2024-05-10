@@ -1,0 +1,22 @@
+.table-view {
+    -fx-background-color:  #FFFAF4;
+}
+
+.table-view .column-header{
+    -fx-size: 35px;
+    -fx-background-color: transparent;
+}
+
+.btnAddToOrder {
+    -fx-background-color: #d1d1d1;
+    -fx-text-fill: #000;
+    -fx-background-radius: 50px;
+}
+
+.btnAddToOrder:hover {
+    -fx-background-color: #FFB321;
+    -fx-text-fill: #fff;
+}
+
+
+

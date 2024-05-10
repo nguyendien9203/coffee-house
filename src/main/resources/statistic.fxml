@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.StatisticController">
+    <left>
+        <AnchorPane prefHeight="70.0" prefWidth="150.0" styleClass="sidebar" stylesheets="@style/sidebar.css" BorderPane.alignment="CENTER">
+            <children>
+                <VBox fx:id="btnProduct" alignment="CENTER" layoutX="40.0" layoutY="152.0" onMouseClicked="#redirectProduct" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="INBOX" selectionFill="#ebebeb" size="2em" />
+                        <Label text="Sản phẩm" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox fx:id="btnOrder" alignment="CENTER" layoutX="40.0" layoutY="362.0" onMouseClicked="#redirectOrder" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="SHOPPING_CART" selectionFill="#ebebeb" size="2em" />
+                        <Label alignment="CENTER" styleClass="item-label" stylesheets="@style/sidebar.css" text="Hóa đơn" textAlignment="CENTER" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox fx:id="btnStatistic" alignment="CENTER" layoutX="40.0" layoutY="432.0" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="BAR_CHART" selectionFill="#ebebeb" size="2em" />
+                        <Label alignment="CENTER" text="Thống kê" textAlignment="CENTER" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox fx:id="btnAuthentication" alignment="CENTER" layoutX="40.0" layoutY="502.0" onMouseClicked="#redirectAuthentication" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="USERS" selectionFill="#ebebeb" size="2em" />
+                        <Label alignment="CENTER" text="Phân quyền" textAlignment="CENTER" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" layoutX="40.0" layoutY="615.0" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css" AnchorPane.bottomAnchor="14.599999999999994" AnchorPane.leftAnchor="40.0">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="SIGN_OUT" selectionFill="#ebebeb" size="2em" />
+                        <Label fx:id="btnLogout" alignment="CENTER" onMouseClicked="#redirectLogin" text="Đăng xuất" textAlignment="CENTER" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox fx:id="btnMenu" alignment="CENTER" layoutX="40.0" layoutY="82.0" onMouseClicked="#redirectMenu" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="ALIGN_JUSTIFY" size="2em" />
+                        <Label text="Menu" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="25.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image/logo.png" />
+                    </image>
+                </ImageView>
+                <VBox fx:id="btnTable" alignment="CENTER" layoutX="40.0" layoutY="222.0" onMouseClicked="#redirectTable" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="TABLE" selectionFill="#ebebeb" size="2em" />
+                        <Label text="Bàn" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox fx:id="btnCategory" alignment="CENTER" layoutX="40.0" layoutY="292.0" onMouseClicked="#redirectCategory" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                    <children>
+                        <FontAwesomeIcon fill="#d1d1d1" glyphName="CALENDAR" selectionFill="#ebebeb" size="2em" />
+                        <Label alignment="CENTER" styleClass="item-label" stylesheets="@style/sidebar.css" text="Danh mục" textAlignment="CENTER" textFill="#d1d1d1">
+                            <font>
+                                <Font size="9.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </left>
+    <center>
+        <AnchorPane prefHeight="100.0" prefWidth="1130.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+            <children>
+                <AnchorPane prefHeight="700.0" prefWidth="1130.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" layoutX="878.0" layoutY="28.0" prefHeight="40.0" prefWidth="211.0" style="-fx-background-color: #FFFAF4; -fx-background-radius: 50px;" AnchorPane.rightAnchor="40.39999999999992" AnchorPane.topAnchor="28.0">
+                            <children>
+                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@image/user_847969.png" />
+                                    </image>
+                                </ImageView>
+                                <Label text="Admin">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets left="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                            </children>
+                        </HBox>
+                  <HBox layoutY="112.0" prefHeight="90.0" prefWidth="872.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="96.0" prefWidth="230.0" style="-fx-background-color: #FFFAF4; -fx-background-radius: 5px;">
+                           <children>
+                              <Label text="Tổng hóa đơn trong 1 ngày">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="20">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="20.0" top="20.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="96.0" prefWidth="230.0" style="-fx-background-color: #FFFAF4; -fx-background-radius: 5px;">
+                           <children>
+                              <Label text="Tổng doanh thu trong 1 ngày">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="20">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="20.0" top="20.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="96.0" prefWidth="230.0" style="-fx-background-color: #FFFAF4; -fx-background-radius: 5px;">
+                           <children>
+                              <Label text="Tổng doanh thu trong 1 tháng">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="20">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="20.0" top="20.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <AnchorPane layoutX="14.0" layoutY="228.0" prefHeight="331.0" prefWidth="768.0" style="-fx-background-color: #FFFAF4;">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Thông kê doanh thu hằng ngày">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <LineChart layoutY="35.0" prefHeight="296.0" prefWidth="766.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children>
+                  </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>

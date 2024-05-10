@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.ProductController">
+   <left>
+      <AnchorPane prefHeight="70.0" prefWidth="150.0" styleClass="sidebar" stylesheets="@style/sidebar.css" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="btnProduct" alignment="CENTER" layoutX="40.0" layoutY="152.0" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+               <children>
+                  <FontAwesomeIcon fill="#d1d1d1" glyphName="INBOX" selectionFill="#ebebeb" size="2em" />
+                  <Label text="Sản phẩm" textFill="#d1d1d1">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="btnOrder" alignment="CENTER" layoutX="40.0" layoutY="362.0" onMouseClicked="#redirectOrder" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+               <children>
+                  <FontAwesomeIcon fill="#d1d1d1" glyphName="SHOPPING_CART" selectionFill="#ebebeb" size="2em" />
+                  <Label alignment="CENTER" styleClass="item-label" stylesheets="@style/sidebar.css" text="Hóa đơn" textAlignment="CENTER" textFill="#d1d1d1">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="btnStatistic" alignment="CENTER" layoutX="40.0" layoutY="432.0" onMouseClicked="#redirectStatistic" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+               <children>
+                  <FontAwesomeIcon fill="#d1d1d1" glyphName="BAR_CHART" selectionFill="#ebebeb" size="2em" />
+                  <Label alignment="CENTER" text="Thống kê" textAlignment="CENTER" textFill="#d1d1d1">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="btnAuthentication" alignment="CENTER" layoutX="40.0" layoutY="502.0" onMouseClicked="#redirectAuthentication" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+               <children>
+                  <FontAwesomeIcon fill="#d1d1d1" glyphName="USERS" selectionFill="#ebebeb" size="2em" />
+                  <Label alignment="CENTER" text="Phân quyền" textAlignment="CENTER" textFill="#d1d1d1">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="btnLogout" alignment="CENTER" layoutX="40.0" layoutY="615.0" onMouseClicked="#redirectLogin" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css" AnchorPane.bottomAnchor="14.599999999999994" AnchorPane.leftAnchor="40.0">
+               <children>
+                  <FontAwesomeIcon fill="#d1d1d1" glyphName="SIGN_OUT" selectionFill="#ebebeb" size="2em" />
+                  <Label alignment="CENTER" text="Đăng xuất" textAlignment="CENTER" textFill="#d1d1d1">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="btnMenu" alignment="CENTER" layoutX="40.0" layoutY="82.0" onMouseClicked="#redirectMenu" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+               <children>
+                  <FontAwesomeIcon fill="#d1d1d1" glyphName="ALIGN_JUSTIFY" size="2em" />
+                  <Label text="Menu" textFill="#d1d1d1">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/logo.png" />
+               </image>
+            </ImageView>
+            <VBox fx:id="btnTable" alignment="CENTER" layoutX="40.0" layoutY="222.0" onMouseClicked="#redirectTable" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+               <children>
+                  <FontAwesomeIcon fill="#d1d1d1" glyphName="TABLE" selectionFill="#ebebeb" size="2em" />
+                  <Label text="Bàn" textFill="#d1d1d1">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="btnCategory" alignment="CENTER" layoutX="40.0" layoutY="292.0" onMouseClicked="#redirectCategory" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+               <children>
+                  <FontAwesomeIcon fill="#d1d1d1" glyphName="CALENDAR" selectionFill="#ebebeb" size="2em" />
+                  <Label alignment="CENTER" styleClass="item-label" stylesheets="@style/sidebar.css" text="Danh mục" textAlignment="CENTER" textFill="#d1d1d1">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="100.0" prefWidth="1130.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="700.0" prefWidth="1130.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" layoutX="878.0" layoutY="28.0" prefHeight="40.0" prefWidth="211.0" style="-fx-background-color: #FFFAF4; -fx-background-radius: 50px;" AnchorPane.rightAnchor="40.39999999999992" AnchorPane.topAnchor="28.0">
+                     <children>
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/user_847969.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Admin">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <TableView layoutY="136.0" prefHeight="200.0" prefWidth="755.0" style="-fx-background-color: #FFFAF4;" AnchorPane.bottomAnchor="363.99999999999994" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="363.20000000000005" AnchorPane.topAnchor="136.0">
+                    <columns>
+                        <TableColumn minWidth="0.0" prefWidth="227.20004880428314" text="Tên sản phẩm" />
+                        <TableColumn minWidth="0.0" prefWidth="120.79998779296875" text="Giá sản phẩm" />
+                        <TableColumn prefWidth="119.99990844726562" text="Loại sản phẩm" />
+                        <TableColumn prefWidth="200.79995727539062" text="Mô tả" />
+                        <TableColumn prefWidth="94.4000244140625" text="Trạng thái" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <AnchorPane layoutX="786.0" layoutY="93.0" prefHeight="584.0" prefWidth="304.0" style="-fx-background-color: #FFFAF4;" AnchorPane.bottomAnchor="23.200000000000045" AnchorPane.rightAnchor="39.59999999999991" AnchorPane.topAnchor="93.0">
+                     <children>
+                        <VBox layoutX="34.0" layoutY="14.0" prefHeight="60.0" prefWidth="235.0">
+                           <children>
+                              <Label text="Mã sản phẩm">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField prefHeight="35.0" prefWidth="235.0" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" />
+                           </children>
+                        </VBox>
+                        <VBox layoutX="34.0" layoutY="84.0" prefHeight="60.0" prefWidth="235.0">
+                           <children>
+                              <Label text="Tên sản phẩm">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField prefHeight="35.0" prefWidth="235.0" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" />
+                           </children>
+                        </VBox>
+                        <VBox layoutX="34.0" layoutY="157.0" prefHeight="60.0" prefWidth="235.0">
+                           <children>
+                              <Label text="Giá sản phẩm">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField prefHeight="35.0" prefWidth="235.0" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" />
+                           </children>
+                        </VBox>
+                        <VBox layoutX="34.0" layoutY="232.0" prefHeight="60.0" prefWidth="235.0">
+                           <children>
+                              <Label text="Loại sản phẩm">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox>
+                                 <children>
+                                    <ComboBox prefHeight="35.0" prefWidth="200.0" promptText="Chọn loại sản phẩm" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px 0 0 5px;" />
+                                    <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 0 5px 5px 0;" text="+" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="34.0" layoutY="374.0" prefHeight="60.0" prefWidth="235.0">
+                           <children>
+                              <Label text="Ảnh sản phẩm">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox>
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: #e1e1e1; -fx-background-color: transparent; -fx-border-radius: 5px 0 0 5px;" text="+" />
+                                    <TextField prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 0 5px 5px 0;" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Button layoutX="35.0" layoutY="534.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: #65C56E;" text="Thêm" textFill="WHITE" AnchorPane.bottomAnchor="14.799999999999997" />
+                        <Button layoutX="117.0" layoutY="534.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: #FFB321;" text="Sửa" textFill="WHITE" AnchorPane.bottomAnchor="14.40000000000002" />
+                        <Button layoutX="199.0" layoutY="534.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: #E16B68;" text="Xóa" textFill="WHITE" AnchorPane.bottomAnchor="14.40000000000002" />
+                        <VBox layoutX="34.0" layoutY="304.0" prefHeight="60.0" prefWidth="235.0">
+                           <children>
+                              <Label text="Trạng thái">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <ComboBox prefHeight="35.0" prefWidth="235.0" promptText="Chọn loại sản phẩm" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" />
+                           </children>
+                        </VBox>
+                        <VBox layoutX="34.0" layoutY="444.0" prefHeight="74.0" prefWidth="235.0">
+                           <children>
+                              <Label text="Mô tả">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextArea prefHeight="59.0" prefWidth="235.0" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" wrapText="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <HBox layoutX="78.4" layoutY="93.0" prefHeight="35.0" prefWidth="688.0" AnchorPane.rightAnchor="364.0">
+                     <children>
+                        <ComboBox prefHeight="35.0" prefWidth="130.0" promptText="Lọc" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" />
+                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" text="Nhập">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" text="Xuất">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <TextField prefHeight="35.0" prefWidth="250.0" promptText="Tìm kiếm sản phẩm" style="-fx-background-color: transparant; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;">
+                           <HBox.margin>
+                              <Insets left="70.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: transparant; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;" text="Tìm">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

@@ -4,12 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
+import vn.aptech.c2304l.learning.dal.UserDAO;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class LoginController {
 
@@ -24,9 +25,18 @@ public class LoginController {
 
     @FXML
     private Button btnLogin;
+    @FXML
+    private Button btnTable;
 
     @FXML
     private Hyperlink btnRegister;
+
+    private UserDAO userDAO;
+
+    @FXML
+    private void initialize() {
+        this.userDAO = new UserDAO();
+    }
 
     @FXML
     public void redirectRegister() {
@@ -45,6 +55,39 @@ public class LoginController {
         }  catch (Exception e) {
             System.out.println("redirectRegister(): " + e.getMessage());
         }
+    }
+    @FXML
+    public void btnLoginClicked() {
+        String inputUsername = username.getText();
+        String inputPassword = password.getText();
+
+        String role = userDAO.checkLogin(inputUsername, inputPassword);
+
+        if (Objects.equals(role, "admin") || Objects.equals(role, "employee")) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
+                Parent root = loader.load();
+                MenuController menuController = loader.getController();
+                menuController.setRole(role);
+                loader.setController(menuController);
+                Stage stage = (Stage) username.getScene().getWindow();
+                stage.setScene(new Scene(root));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert("Lỗi", "Không thể mở trang Menu", "Vui lòng thử lại sau.", Alert.AlertType.ERROR);
+            }
+        } else {
+            showAlert("Lỗi đăng nhập", "Đăng nhập không thành công", "Vui lòng kiểm tra lại tài khoản và mật khẩu.", Alert.AlertType.ERROR);
+        }
+    }
+
+    private void showAlert(String title, String headerText, String contentText, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
     }
 
     public void redirectForgetPassword() {
