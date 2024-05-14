@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
 import vn.aptech.c2304l.learning.model.Order;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class MenuController{
@@ -167,22 +168,19 @@ public class MenuController{
     }
 
     @FXML
-    public void redirectAuthentication() {
-        try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/authentication.fxml"));
+    public void redirectAuthentication() throws IOException {
+        Parent root = FXMLLoader.load(Main.class.getResource("/authentication.fxml"));
 
-            Scene scene = new Scene(root);
+        Scene scene = new Scene(root);
 
 
-            Stage stage = (Stage) btnAuthentication.getScene().getWindow();
-            stage.setTitle("Phân quyền");
-            stage.setResizable(false);
+        Stage stage = (Stage) btnAuthentication.getScene().getWindow();
+        stage.setTitle("Phân quyền");
+        stage.setResizable(false);
 
-            stage.setScene(scene);
-            stage.show();
-        }  catch (Exception e) {
-            System.out.println("redirectAuthentication(): " + e.getMessage());
-        }
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     @FXML
