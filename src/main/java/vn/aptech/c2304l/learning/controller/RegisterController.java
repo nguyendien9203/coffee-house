@@ -80,7 +80,7 @@ public class RegisterController implements Initializable {
                 return;
             }
 
-            if (!fullname.matches("^[a-zA-Z\\d]+$")) {
+            if (!fullname.matches("^[a-zA-Z\\s]+$")) {
                 AlertNotification alert = new AlertNotification();
                 alert.showAlert("Thông báo","Tên người dùng chỉ chứa chữ cái in thường, in hoa và khoảng trắng");
                 return;
