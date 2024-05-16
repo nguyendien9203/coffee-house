@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
 
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class OrderController implements Initializable {
@@ -39,34 +38,6 @@ public class OrderController implements Initializable {
 
     @FXML
     private VBox btnTable;
-    private String role;
-
-    public void setRole(String role) {
-        this.role = role;
-        updateUI();
-    }
-
-    private void updateUI() {
-        if(Objects.equals(role, "ADMIN")) {
-            btnProduct.setVisible(true);
-            btnOrder.setVisible(true);
-            btnStatistic.setVisible(true);
-            btnAuthentication.setVisible(true);
-            btnLogout.setVisible(true);
-            btnMenu.setVisible(true);
-            btnTable.setVisible(true);
-            btnCategory.setVisible(true);
-        } else {
-            btnProduct.setVisible(false);
-            btnOrder.setVisible(true);
-            btnStatistic.setVisible(false);
-            btnAuthentication.setVisible(false);
-            btnLogout.setVisible(true);
-            btnMenu.setVisible(false);
-            btnTable.setVisible(false);
-            btnCategory.setVisible(false);
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
