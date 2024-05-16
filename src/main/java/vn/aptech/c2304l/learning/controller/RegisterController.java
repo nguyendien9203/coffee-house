@@ -26,8 +26,6 @@ import java.util.ResourceBundle;
 public class RegisterController implements Initializable {
 
     private BcryptUtil bcryptUtil = BcryptUtil.getInstance();
-    private UserDAO udao = new UserDAO();
-    AlertNotification alert = new AlertNotification();
 
     @FXML
     private PasswordField txtConfirmPassword;
@@ -77,31 +75,38 @@ public class RegisterController implements Initializable {
             String confirmPassword = txtConfirmPassword.getText().trim();
 
             if (fullname.isBlank() || username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
+                AlertNotification alert = new AlertNotification();
                 alert.showAlert("Thông báo", "Vui lòng nhập đầy đủ thông tin.");
                 return;
             }
 
             if (!fullname.matches("^[a-zA-Z\\s]+$")) {
+                AlertNotification alert = new AlertNotification();
                 alert.showAlert("Thông báo","Tên người dùng chỉ chứa chữ cái in thường, in hoa và khoảng trắng");
                 return;
             }
 
             if (!username.matches("^[a-z0-9]+$")) {
+                AlertNotification alert = new AlertNotification();
                 alert.showAlert("Thông báo","Tên đăng nhập chỉ chứa số hoặc chữ cái in thường");
                 return;
             }
 
             if (!password.matches("^[a-z0-9]{8,}$")) {
+                AlertNotification alert = new AlertNotification();
                 alert.showAlert("Thông báo","Mật khẩu phải ít nhất 8 ký tự, có chứa ít nhất 1 số, 1 chữ cái in thường");
                 return;
             }
 
             if (!password.equals(confirmPassword.trim())) {
+                AlertNotification alert = new AlertNotification();
                 alert.showAlert("Thông báo", "Mật khẩu không khớp.");
                 return;
             }
 
-            if (udao.findByUsername(username) != null) {
+            UserDAO userDAO = new UserDAO();
+            if (userDAO.checkUsernameExists(username)) {
+                AlertNotification alert = new AlertNotification();
                 alert.showAlert("Thông báo", "Tài khoản đã tồn tại.");
                 return;
             }
@@ -114,7 +119,7 @@ public class RegisterController implements Initializable {
             user.setUsername(username);
             user.setPassword(hashPassword);
             user.setStatus(UserStatus.ACTIVE);
-            if (udao.registerUser(user)) {
+            if (userDAO.registerUser(user)) {
                 AlertNotification alert = new AlertNotification();
                 alert.showAlert("Thông báo", "Đăng kí thành công.");
 

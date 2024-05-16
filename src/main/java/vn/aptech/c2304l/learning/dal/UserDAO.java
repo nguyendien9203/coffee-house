@@ -1,7 +1,5 @@
 package vn.aptech.c2304l.learning.dal;
 
-import vn.aptech.c2304l.learning.constant.UserRole;
-import vn.aptech.c2304l.learning.constant.UserStatus;
 import vn.aptech.c2304l.learning.context.DBContext;
 import vn.aptech.c2304l.learning.model.User;
 import vn.aptech.c2304l.learning.utils.BcryptUtil;
@@ -16,7 +14,6 @@ public class UserDAO extends DBContext {
     PreparedStatement stm = null;
     ResultSet rs = null;
 
-    private BcryptUtil bcryptUtil = BcryptUtil.getInstance();
     public boolean registerUser(User user) {
         try {
             String sql = "INSERT INTO users (role, fullname, username, password, status) VALUES (?, ?, ?, ?, ?);";
@@ -42,24 +39,18 @@ public class UserDAO extends DBContext {
         }
     }
 
-
-    public User findByUsername(String username) {
+    public boolean checkUsernameExists(String username) {
         try {
             String sql = "SELECT * FROM users WHERE username = ?";
             stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             rs = stm.executeQuery();
             if(rs.next()) {
-                User user = new User();
-                user.setId(rs.getInt(1));
-                user.setRole(UserRole.valueOf(rs.getString(2)));
-                user.setFullname(rs.getString(3));
-                user.setUsername(rs.getString(4));
-                user.setPassword(rs.getString(5));
-                return user;
+                return true;
             }
+
         } catch (SQLException e) {
-            System.out.println("findByUsername(): " + e.getMessage());
+            System.out.println("checkUsernameExists(): " + e.getMessage());
         } finally {
             if (stm != null) {
                 try {
@@ -69,17 +60,25 @@ public class UserDAO extends DBContext {
                 }
             }
         }
-        return null;
+        return false;
     }
 
-    public boolean login(String username, String password) {
+    BcryptUtil bcryptUtil = BcryptUtil.getInstance();
+
+    public boolean checkPassword(String username, String password, String status) {
         try {
-            User user = findByUsername(username);
-            if (user != null) {
-                return bcryptUtil.checkPassword(password, user.getPassword());
+            String sql = "SELECT * FROM users WHERE username = ? AND status = ?";
+            stm =connection.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setString(2, status);
+            rs = stm.executeQuery();
+            if(rs.next()) {
+                if(bcryptUtil.checkPassword(password, rs.getString("password"))) {
+                    return true;
+                }
             }
         } catch (Exception e) {
-            System.out.println("login(): " + e.getMessage());
+            System.out.println("checkPassword(): " + e.getMessage());
         } finally {
             if(stm != null) {
                 try {
@@ -93,5 +92,34 @@ public class UserDAO extends DBContext {
     }
 
 
+
+    public void changePassword(String username, String password) {
+
+        try {
+            String sql = "UPDATE users SET password = ? WHERE username = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, password);
+            stm.setString(2, username);
+
+            int rowsAffected = stm.executeUpdate(); // Thực hiện câu lệnh UPDATE và trả về số dòng bị ảnh hưởng
+
+            // Kiểm tra xem có dòng nào bị ảnh hưởng hay không
+            if (rowsAffected > 0) {
+            }
+        } catch (SQLException e) {
+            System.out.println("changePassword(): " + e.getMessage());
+        } finally {
+            if (stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
+
 }
+
 
