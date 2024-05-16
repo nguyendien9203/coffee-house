@@ -94,16 +94,17 @@ public class LoginController implements Initializable {
             } else if (userDAO.checkPassword(username, password, UserStatus.ACTIVE.toString())){
 
                 alert.showAlert("Thành công", "Đăng nhập thành công.");
+                String role = userDAO.getRole(username);
+                System.out.println(role);
 
                 try {
-                    Parent root = FXMLLoader.load(Main.class.getResource("/menu.fxml"));
-                    Scene scene = new Scene(root);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
+                    Parent root = loader.load();
+                    MenuController menuController = loader.getController();
+                    menuController.setRole(role);
+                    loader.setController(menuController);
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
-                    stage.setTitle("Menu");
-                    stage.setResizable(false);
-                    stage.setScene(scene);
-                    stage.show();
-                    // Thêm code để hiển thị giao diện mới (root) ở đây
+                    stage.setScene(new Scene(root));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

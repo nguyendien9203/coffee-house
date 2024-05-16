@@ -1,19 +1,26 @@
 package vn.aptech.c2304l.learning.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
+import vn.aptech.c2304l.learning.constant.UserRole;
+import vn.aptech.c2304l.learning.constant.UserStatus;
+import vn.aptech.c2304l.learning.dal.UserDAO;
+import vn.aptech.c2304l.learning.model.User;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import java.sql.SQLException;
 
-public class AuthenticationController implements Initializable {
+public class AuthenticationController {
 
     @FXML
     private VBox btnAuthentication;
@@ -39,8 +46,107 @@ public class AuthenticationController implements Initializable {
     @FXML
     private VBox btnTable;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    private UserDAO userDAO;
+
+    @FXML
+    private TableView<User> userTable;
+
+    @FXML
+    private TableColumn<User, String> fullnameColumn;
+
+    @FXML
+    private TableColumn<User, String> usernameColumn;
+
+    @FXML
+    private TableColumn<User, UserRole> roleColumn;
+
+    @FXML
+    private TableColumn<User, UserStatus> statusColumn;
+
+    @FXML
+    private TextField searchField;
+
+    @FXML
+    private TextField fullnameField;
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private ComboBox<UserStatus> statusComboBox;
+    @FXML
+    private ComboBox<UserStatus> statusFindComboBox;
+    @FXML
+    private ComboBox<String> roleComboBox;
+    @FXML
+    private Button updateButton;
+    private ObservableList<User> userList;
+
+    @FXML
+    public void initialize() {
+        userDAO = new UserDAO();
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        fullnameColumn.setCellValueFactory(new PropertyValueFactory<>("fullname"));
+        roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        roleComboBox.setItems(FXCollections.observableArrayList("ADMIN", "EMPLOYEE"));
+        statusComboBox.setItems(FXCollections.observableArrayList(UserStatus.ACTIVE, UserStatus.INACTIVE));
+        statusFindComboBox.setItems(FXCollections.observableArrayList(UserStatus.ACTIVE, UserStatus.INACTIVE));
+        userList = getUserData();
+        userTable.setItems(getUserData());
+        userTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showUserDetails(newValue));
+    }
+
+    private void showUserDetails(User user) {
+        if (user != null) {
+            fullnameField.setText(user.getFullname());
+            usernameField.setText(user.getUsername());
+            statusComboBox.setValue(user.getStatus());
+            roleComboBox.setValue(String.valueOf(user.getRole()));
+        } else {
+            fullnameField.setText("");
+            usernameField.setText("");
+            statusComboBox.setValue(null);
+            roleComboBox.setValue(null);
+        }
+    }
+
+    @FXML
+    private void handleUpdateAction() {
+        User user = new User();
+        user.setFullname(fullnameField.getText());
+        user.setUsername(usernameField.getText());
+        user.setRole(UserRole.valueOf(roleComboBox.getValue()));
+        user.setStatus(statusComboBox.getValue());
+        userDAO.update(user);
+        userTable.refresh();
+        userTable.setItems(getUserData());
+    }
+
+    private ObservableList<User> getUserData() {
+        return userDAO.findAll();
+    }
+
+    @FXML
+    private void handleSearchAction() {
+        String searchText = searchField.getText();
+        String searchStatus = statusFindComboBox.getValue().name();
+        ObservableList<User> filteredUsers = userDAO.findByUsernameAndStatus(searchText, searchStatus);
+        userTable.setItems(filteredUsers);
+    }
+
+    @FXML
+    public void redirectAuthentication() throws IOException {
+        Parent root = FXMLLoader.load(Main.class.getResource("/authentication.fxml"));
+
+        Scene scene = new Scene(root);
+
+
+        Stage stage = (Stage) btnAuthentication.getScene().getWindow();
+        stage.setTitle("Phân quyền");
+        stage.setResizable(false);
+
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     @FXML
