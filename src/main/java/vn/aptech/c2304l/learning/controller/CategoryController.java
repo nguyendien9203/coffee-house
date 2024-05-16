@@ -229,11 +229,16 @@ public class CategoryController implements Initializable {
 
         if (file != null) {
             try (Workbook workbook = new HSSFWorkbook()) {
-                Sheet sheet = workbook.createSheet("Table Data");
+                Sheet sheet = workbook.createSheet("Category");
+
+
 
                 // Write header row
                 Row headerRow = sheet.createRow(0);
                 headerRow.createCell(0).setCellValue("Category Name");
+
+
+                sheet.setColumnWidth(0, 20 * 256);
 
                 // Write data rows
                 ObservableList<Category> categoryData = tableView.getItems();
@@ -309,8 +314,6 @@ public class CategoryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btnCategory.requestFocus();
-        btnCategory.setFocusTraversable(true);
 
         findAll();
         addTableViewSelectionListener();

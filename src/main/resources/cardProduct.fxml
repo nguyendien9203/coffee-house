@@ -1,31 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="215.0" prefWidth="355.0" style="-fx-background-color: #FFFAF4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CardProduct">
+<HBox fx:id="productCartItem" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.ProductCardController">
    <children>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="43.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@image/coffee.jpg" />
-         </image>
-      </ImageView>
-      <Label alignment="TOP_LEFT" layoutX="178.0" layoutY="25.0" prefHeight="48.0" prefWidth="134.0" text="Macchiato" wrapText="true">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label alignment="TOP_LEFT" layoutX="178.0" layoutY="75.0" prefHeight="60.0" prefWidth="134.0" text="Shot of espresso topped with frothed milk" textFill="#966c3a" wrapText="true" />
-      <Label layoutX="178.0" layoutY="127.0" prefHeight="18.0" prefWidth="134.0" text="45.000đ">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Button layoutX="42.0" layoutY="167.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="271.0" styleClass="btnAddToOrder" stylesheets="@style/main.css" text="Thêm vào hóa đơn" />
+      <VBox alignment="CENTER" prefHeight="161.0" prefWidth="300.0">
+         <children>
+            <HBox>
+               <children>
+                  <Label fx:id="productId" prefHeight="0.0" prefWidth="0.0" visible="false" />
+                  <AnchorPane fx:id="productImage" prefHeight="100.0" prefWidth="100.0">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </AnchorPane>
+                  <VBox prefHeight="102.0" prefWidth="201.0">
+                     <children>
+                        <Label fx:id="productName" alignment="TOP_LEFT" prefHeight="42.0" prefWidth="206.0" text="Macchiato" wrapText="true">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="productDescription" alignment="TOP_LEFT" prefHeight="42.0" prefWidth="205.0" text="Shot of espresso topped with frothed milk" textFill="#966c3a" wrapText="true" />
+                        <Label fx:id="productPrice" prefHeight="18.0" prefWidth="205.0" text="45.000đ">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </HBox>
+            <Button fx:id="btnAddToBill" mnemonicParsing="false" onAction="#handleAddToBill" prefHeight="26.0" prefWidth="324.0" styleClass="btnAddToOrder" stylesheets="@style/main.css" text="Thêm vào hóa đơn" />
+         </children>
+      </VBox>
    </children>
-</AnchorPane>
+</HBox>

@@ -8,10 +8,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -108,68 +106,82 @@
         </AnchorPane>
     </left>
     <center>
-        <AnchorPane prefHeight="100.0" prefWidth="1130.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="100.0" prefWidth="1130.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
             <children>
-                <AnchorPane prefHeight="700.0" prefWidth="1130.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane prefHeight="700.0" prefWidth="1130.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <HBox alignment="CENTER_LEFT" layoutX="878.0" layoutY="28.0" prefHeight="40.0" prefWidth="211.0" style="-fx-background-color: #FFFAF4; -fx-background-radius: 50px;" AnchorPane.rightAnchor="40.39999999999992" AnchorPane.topAnchor="28.0">
-                            <children>
-                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@image/user_847969.png" />
-                                    </image>
-                                </ImageView>
-                                <Label text="Admin">
-                                    <font>
-                                        <Font name="System Bold" size="14.0" />
-                                    </font>
-                                    <HBox.margin>
-                                        <Insets left="10.0" />
-                                    </HBox.margin>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <Label layoutY="98.0" text="Coffee table" textFill="#966c3a">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                        <ScrollPane layoutY="131.2" prefHeight="547.0" prefWidth="1086.0" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="131.0">
-                            <content>
-                                <GridPane hgap="20.0" layoutX="2.0" layoutY="209.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="1086.0" vgap="20.0">
-                                    <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="377.59999999999997" minWidth="10.0" prefWidth="355.1999450683594" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="355.2000427246094" minWidth="10.0" prefWidth="354.4000549316406" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="355.2000427246094" minWidth="10.0" prefWidth="354.4000549316406" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="355.2000427246094" minWidth="10.0" prefWidth="354.4000549316406" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <children>
-                                        <AnchorPane prefHeight="216.0" prefWidth="172.0" />
-                                    </children>
-                                </GridPane>
-                            </content>
-                        </ScrollPane>
-                  <HBox alignment="CENTER" layoutX="786.0" layoutY="89.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #FFFAF4; -fx-background-radius: 5px;" AnchorPane.rightAnchor="43.59999999999991">
+                  <HBox alignment="CENTER" layoutX="18.0" layoutY="89.0" prefHeight="23.0" prefWidth="1090.0">
                      <children>
-                        <Label prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: #000; -fx-background-radius: 50%;" />
-                        <Label text="Còn trống">
+                              <Label prefHeight="27.0" prefWidth="816.0" text="Coffee table">
+                                  <font>
+                                      <Font size="18.0" />
+                                  </font>
+                              </Label>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #F5F5F5; -fx-background-radius: 5px;">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: #FFF; -fx-background-radius: 50%;" />
+                              <Label text="Còn trống">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: #966C3A; -fx-background-radius: 50%;">
+                                 <HBox.margin>
+                                    <Insets left="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label text="Đang đặt">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="6.0" top="6.0" />
+                     </padding>
+                  </HBox>
+                  <HBox layoutX="17.0" layoutY="132.0" prefHeight="554.0" prefWidth="1096.0" style="-fx-background-color: #F5F5F5;">
+                     <children>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
+                           <content>
+                              <GridPane fx:id="tableGridPane" hgap="15.0" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #F5F5F5;" vgap="15.0">
+                              </GridPane>
+                           </content>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="878.0" layoutY="28.0" prefHeight="46.0" prefWidth="230.0" style="-fx-background-color: #FFF; -fx-background-radius: 50px;">
+                     <children>
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/user_847969.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Hello,">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
-                        <Label prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: #966C3A; -fx-background-radius: 50%;">
+                        <Label fx:id="labelFullName" text="Dien">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
                            <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label text="Đang đặt">
-                           <HBox.margin>
-                              <Insets left="10.0" />
+                              <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
                      </children>

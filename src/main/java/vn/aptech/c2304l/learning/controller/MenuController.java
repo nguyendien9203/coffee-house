@@ -1,15 +1,29 @@
 package vn.aptech.c2304l.learning.controller;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
+import vn.aptech.c2304l.learning.dal.TableDAO;
+import vn.aptech.c2304l.learning.model.Table;
 
-public class MenuController{
+import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MenuController implements Initializable {
+
+    private TableDAO tdao = new TableDAO();
 
     @FXML
     private VBox btnAuthentication;
@@ -36,9 +50,49 @@ public class MenuController{
     private VBox btnTable;
 
     @FXML
-    public void initialize() {
-        btnMenu.requestFocus();
-        btnMenu.setFocusTraversable(true);
+    private GridPane tableGridPane;
+
+    @FXML
+    private StackPane tableItem;
+    @FXML
+    private Label labelUsername;
+
+    public void findAll() {
+        ObservableList<Table> listData = tdao.findAll();
+
+        int row = 1;
+        int column = 0;
+
+        tableGridPane.getChildren().clear();
+
+        for (Table table : listData) {
+            try {
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("/numberOfSeats.fxml"));
+                StackPane stackPane = loader.load();
+
+                stackPane.setPrefWidth(205);
+                stackPane.setPrefHeight(172);
+                stackPane.setAlignment(Pos.CENTER);
+
+                NumOfSeatsController controller = loader.getController();
+                controller.setData(table);
+
+                tableGridPane.add(stackPane, column++, row);
+                if (column == 5) {
+                    column = 0;
+                    row++;
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        findAll();
     }
 
     @FXML

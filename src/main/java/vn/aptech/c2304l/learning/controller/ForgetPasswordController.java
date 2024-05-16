@@ -113,6 +113,21 @@ public class ForgetPasswordController implements Initializable {
                 alert.showAlert("Thông báo","Đổi mật khẩu thành công");
                 String hashPassword = bcryptUtil.hashPassword(pass);
                 userDAO.changePassword(username,hashPassword);
+
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(Main.class.getResource("/login.fxml"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Scene scene = new Scene(root);
+
+                Stage stage = (Stage) btnConfirm.getScene().getWindow();
+                stage.setTitle("Login");
+                stage.setResizable(false);
+                stage.setScene(scene);
+                stage.show();
             }else{
                 alert.showAlert("Lỗi","Mật khẩu không khớp");
             }

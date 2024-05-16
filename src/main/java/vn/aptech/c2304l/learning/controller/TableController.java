@@ -245,12 +245,18 @@ public class TableController implements Initializable {
 
         if (file != null) {
             try (Workbook workbook = new HSSFWorkbook()) {
-                Sheet sheet = workbook.createSheet("Table Data");
+                Sheet sheet = workbook.createSheet("Table");
+
+
 
                 // Write header row
                 Row headerRow = sheet.createRow(0);
                 headerRow.createCell(0).setCellValue("Table Number");
                 headerRow.createCell(1).setCellValue("Number of Seats");
+
+
+                sheet.setColumnWidth(0, 20 * 256);
+                sheet.setColumnWidth(1, 20 * 256);
 
                 // Write data rows
                 ObservableList<Table> tableData = tableView.getItems();
@@ -330,10 +336,6 @@ public class TableController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btnTable.requestFocus();
-        btnTable.setFocusTraversable(true);
-
-
         numOfSeats();
         findAll();
         addTableViewSelectionListener();
