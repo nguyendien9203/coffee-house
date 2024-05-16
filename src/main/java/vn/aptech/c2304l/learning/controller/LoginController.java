@@ -2,43 +2,41 @@ package vn.aptech.c2304l.learning.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
-import vn.aptech.c2304l.learning.constant.UserStatus;
 import vn.aptech.c2304l.learning.dal.UserDAO;
-import vn.aptech.c2304l.learning.model.User;
-import vn.aptech.c2304l.learning.utils.AlertNotification;
-import vn.aptech.c2304l.learning.utils.BcryptUtil;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.Objects;
 
-public class LoginController implements Initializable {
-    private BcryptUtil bcryptUtil = BcryptUtil.getInstance();
-    AlertNotification alert = new AlertNotification();
+public class LoginController {
 
     @FXML
-    private TextField txt_username;
+    private TextField username;
 
     @FXML
-    private PasswordField txt_password;
+    private PasswordField password;
 
     @FXML
     private Hyperlink btnForgetPassword;
 
     @FXML
     private Button btnLogin;
+    @FXML
+    private Button btnTable;
 
     @FXML
     private Hyperlink btnRegister;
+
+    private UserDAO userDAO;
+
+    @FXML
+    private void initialize() {
+        this.userDAO = new UserDAO();
+    }
 
     @FXML
     public void redirectRegister() {
@@ -58,6 +56,39 @@ public class LoginController implements Initializable {
             System.out.println("redirectRegister(): " + e.getMessage());
         }
     }
+    @FXML
+    public void btnLoginClicked() {
+        String inputUsername = username.getText();
+        String inputPassword = password.getText();
+
+        String role = userDAO.checkLogin(inputUsername, inputPassword);
+
+        if (Objects.equals(role, "ADMIN") || Objects.equals(role, "EMPLOYEE")) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
+                Parent root = loader.load();
+                MenuController menuController = loader.getController();
+                menuController.setRole(role);
+                loader.setController(menuController);
+                Stage stage = (Stage) username.getScene().getWindow();
+                stage.setScene(new Scene(root));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert("Lỗi", "Không thể mở trang Menu", "Vui lòng thử lại sau.", Alert.AlertType.ERROR);
+            }
+        } else {
+            showAlert("Lỗi đăng nhập", "Đăng nhập không thành công", "Vui lòng kiểm tra lại tài khoản và mật khẩu.", Alert.AlertType.ERROR);
+        }
+    }
+
+    private void showAlert(String title, String headerText, String contentText, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
 
     public void redirectForgetPassword() {
         try {
@@ -75,42 +106,4 @@ public class LoginController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        btnLogin.setOnAction(eh -> {
-            String username = txt_username.getText().trim();
-            String password = txt_password.getText().trim();
-            UserDAO userDAO = new UserDAO();
-
-            if (username.isBlank() || password.isBlank()) {
-                AlertNotification alert = new AlertNotification();
-                alert.showAlert("Lỗi", "Vui lòng nhập tài khoản và mật khẩu.");
-                return;
-            }
-
-            if(userDAO.checkPassword(username, password, UserStatus.INACTIVE.toString())) {
-                alert.showAlert("Thông báo", "Tài khoản đã bị vô hiệu hoá.");
-                return;
-            } else if (userDAO.checkPassword(username, password, UserStatus.ACTIVE.toString())){
-
-                alert.showAlert("Thành công", "Đăng nhập thành công.");
-
-                try {
-                    Parent root = FXMLLoader.load(Main.class.getResource("/menu.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) btnLogin.getScene().getWindow();
-                    stage.setTitle("Menu");
-                    stage.setResizable(false);
-                    stage.setScene(scene);
-                    stage.show();
-                    // Thêm code để hiển thị giao diện mới (root) ở đây
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                AlertNotification alert = new AlertNotification();
-                alert.showAlert("Lỗi", "Tài khoản hoặc mật khẩu không đúng.");
-            }
-        });
-    }
 }

@@ -19,6 +19,7 @@ import vn.aptech.c2304l.learning.model.Table;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
@@ -56,6 +57,8 @@ public class MenuController implements Initializable {
     private StackPane tableItem;
     @FXML
     private Label labelUsername;
+    private String role;
+
 
     public void findAll() {
         ObservableList<Table> listData = tdao.findAll();
@@ -86,6 +89,33 @@ public class MenuController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+        updateUI();
+    }
+
+    private void updateUI() {
+        if(Objects.equals(role, "ADMIN")) {
+            btnProduct.setVisible(true);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(true);
+            btnAuthentication.setVisible(true);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(true);
+            btnTable.setVisible(true);
+            btnCategory.setVisible(true);
+        } else {
+            btnProduct.setVisible(false);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(false);
+            btnAuthentication.setVisible(false);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(false);
+            btnTable.setVisible(false);
+            btnCategory.setVisible(false);
         }
     }
 
@@ -155,21 +185,20 @@ public class MenuController implements Initializable {
     @FXML
     public void redirectOrder() {
         try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/order.fxml"));
-
-            Scene scene = new Scene(root);
-
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/order.fxml"));
+            Parent root = loader.load();
+            OrderController orderController = loader.getController();
+            orderController.setRole(role);
+            loader.setController(orderController);
             Stage stage = (Stage) btnOrder.getScene().getWindow();
             stage.setTitle("Hóa đơn");
             stage.setResizable(false);
-
-            stage.setScene(scene);
-            stage.show();
+            stage.setScene(new Scene(root));
         }  catch (Exception e) {
             System.out.println("redirectOrder(): " + e.getMessage());
         }
     }
+
 
     @FXML
     public void redirectStatistic() {
