@@ -13,8 +13,8 @@ public class DBContext {
 
         try {
             String user = "root";
-            String pass = "Strongpass@";
-            String url = "jdbc:mysql://localhost:3307/coffeemgt";
+            String pass = "abcd12345";
+            String url = "jdbc:mysql://localhost:3306/coffeemgt";
 
             connection = DriverManager.getConnection(url, user, pass);
 
