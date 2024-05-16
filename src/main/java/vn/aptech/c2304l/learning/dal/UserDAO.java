@@ -18,6 +18,55 @@ public class UserDAO extends DBContext {
     PreparedStatement stm = null;
     ResultSet rs = null;
 
+    public ObservableList<User> findByUsernameAndStatus(String username, String status) {
+        ObservableList<User> users = FXCollections.observableArrayList();
+
+        try {
+            String sql = "";
+
+            if(status == "ACTIVE" || status == "INACTIVE") {
+                sql = "SELECT * FROM users WHERE username LIKE ? and status = ?";
+                stm = connection.prepareStatement(sql);
+                stm.setString(1, "%" + username + "%");
+                stm.setString(2, status);
+            }
+            else {
+                sql = "SELECT * FROM users WHERE username LIKE ?";
+                stm = connection.prepareStatement(sql);
+                stm.setString(1, "%" + username + "%");
+            }
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt(1));
+                String roleString = rs.getString(2);
+                if (roleString != null) {
+                    user.setRole(UserRole.valueOf(roleString.toUpperCase()));
+                }
+                user.setFullname(rs.getString(3));
+                user.setUsername(rs.getString(4));
+                user.setPassword(rs.getString(5));
+                String statusString = rs.getString(6);
+                if (statusString != null) {
+                    user.setStatus(UserStatus.valueOf(statusString.toUpperCase()));
+                }
+                users.add(user);
+            }
+            return users;
+        } catch (Exception e) {
+            System.out.println("handleSearchAction(): " + e.getMessage());
+        } finally {
+            if (stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        return null;
+    }
+
     public ObservableList<User> findAll() {
         ObservableList<User> users = FXCollections.observableArrayList();
         try {
@@ -55,23 +104,13 @@ public class UserDAO extends DBContext {
         return null;
     }
 
-    public ObservableList<User> findByUsernameAndStatus(String username, String status) {
+    public ObservableList<User> findByUsername(String username) {
         ObservableList<User> users = FXCollections.observableArrayList();
 
         try {
-            String sql = "";
-
-            if(status == "ACTIVE" || status == "INACTIVE") {
-                sql = "SELECT * FROM users WHERE username LIKE ? and status = ?";
-                stm = connection.prepareStatement(sql);
-                stm.setString(1, "%" + username + "%");
-                stm.setString(2, status);
-            }
-            else {
-                sql = "SELECT * FROM users WHERE username LIKE ?";
-                stm = connection.prepareStatement(sql);
-                stm.setString(1, "%" + username + "%");
-            }
+            String sql = "SELECT * FROM users WHERE username LIKE ?";
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, "%" + username + "%");
             rs = stm.executeQuery();
             while (rs.next()) {
                 User user = new User();
@@ -227,7 +266,28 @@ public class UserDAO extends DBContext {
         return false;
     }
 
+    public void changePassword(String username, String password) {
+        try {
+            String sql = "UPDATE users SET password = ? WHERE username = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, password);
+            stm.setString(2, username);
 
+            int rowsAffected = stm.executeUpdate();
 
+            if (rowsAffected > 0) {
+            }
+        } catch (SQLException e) {
+            System.out.println("changePassword(): " + e.getMessage());
+        } finally {
+            if (stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
 }
 

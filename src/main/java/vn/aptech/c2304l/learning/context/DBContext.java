@@ -14,8 +14,7 @@ public class DBContext {
         try {
             String user = "root";
             String pass = "Strongpass@";
-            String url = "jdbc:mysql://localhost:3307/coffeeMgt";
-
+            String url = "jdbc:mysql://localhost:3307/coffeemgt";
             connection = DriverManager.getConnection(url, user, pass);
 
         } catch (Exception e) {

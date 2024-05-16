@@ -20,4 +20,6 @@ public class Product {
     BigDecimal price;
     String image;
     ProductStatus status;
+    String description;
+
 }
