@@ -6,24 +6,22 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.ProductController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.MenuDetailController">
     <left>
         <AnchorPane prefHeight="70.0" prefWidth="150.0" styleClass="sidebar" stylesheets="@style/sidebar.css" BorderPane.alignment="CENTER">
             <children>
-                <VBox alignment="CENTER" layoutX="40.0" layoutY="152.0" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                <VBox fx:id="btnProduct" alignment="CENTER" layoutX="40.0" layoutY="152.0" onMouseClicked="#redirectProduct" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
                     <children>
                         <FontAwesomeIcon fill="#d1d1d1" glyphName="INBOX" selectionFill="#ebebeb" size="2em" />
                         <Label text="Sản phẩm" textFill="#d1d1d1">
@@ -33,7 +31,7 @@
                         </Label>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER" layoutX="40.0" layoutY="362.0" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                <VBox fx:id="btnOrder" alignment="CENTER" layoutX="40.0" layoutY="362.0" onMouseClicked="#redirectOrder" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
                     <children>
                         <FontAwesomeIcon fill="#d1d1d1" glyphName="SHOPPING_CART" selectionFill="#ebebeb" size="2em" />
                         <Label alignment="CENTER" styleClass="item-label" stylesheets="@style/sidebar.css" text="Hóa đơn" textAlignment="CENTER" textFill="#d1d1d1">
@@ -43,7 +41,7 @@
                         </Label>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER" layoutX="40.0" layoutY="432.0" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                <VBox fx:id="btnStatistic" alignment="CENTER" layoutX="40.0" layoutY="432.0" onMouseClicked="#redirectStatistic" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
                     <children>
                         <FontAwesomeIcon fill="#d1d1d1" glyphName="BAR_CHART" selectionFill="#ebebeb" size="2em" />
                         <Label alignment="CENTER" text="Thống kê" textAlignment="CENTER" textFill="#d1d1d1">
@@ -53,7 +51,7 @@
                         </Label>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER" layoutX="40.0" layoutY="502.0" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                <VBox fx:id="btnAuthentication" alignment="CENTER" layoutX="40.0" layoutY="502.0" onMouseClicked="#redirectAuthentication" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
                     <children>
                         <FontAwesomeIcon fill="#d1d1d1" glyphName="USERS" selectionFill="#ebebeb" size="2em" />
                         <Label alignment="CENTER" text="Phân quyền" textAlignment="CENTER" textFill="#d1d1d1">
@@ -63,7 +61,7 @@
                         </Label>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER" layoutX="40.0" layoutY="615.0" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css" AnchorPane.bottomAnchor="14.599999999999994" AnchorPane.leftAnchor="40.0">
+                <VBox fx:id="btnLogout" alignment="CENTER" layoutX="40.0" layoutY="615.0" onMouseClicked="#redirectLogin" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css" AnchorPane.bottomAnchor="14.599999999999994" AnchorPane.leftAnchor="40.0">
                     <children>
                         <FontAwesomeIcon fill="#d1d1d1" glyphName="SIGN_OUT" selectionFill="#ebebeb" size="2em" />
                         <Label alignment="CENTER" text="Đăng xuất" textAlignment="CENTER" textFill="#d1d1d1">
@@ -73,7 +71,7 @@
                         </Label>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER" layoutX="40.0" layoutY="82.0" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                <VBox fx:id="btnMenu" alignment="CENTER" layoutX="40.0" layoutY="82.0" onMouseClicked="#redirectMenu" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
                     <children>
                         <FontAwesomeIcon fill="#d1d1d1" glyphName="ALIGN_JUSTIFY" size="2em" />
                         <Label text="Menu" textFill="#d1d1d1">
@@ -88,7 +86,7 @@
                         <Image url="@image/logo.png" />
                     </image>
                 </ImageView>
-                <VBox alignment="CENTER" layoutX="40.0" layoutY="222.0" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                <VBox fx:id="btnTable" alignment="CENTER" layoutX="40.0" layoutY="222.0" onMouseClicked="#redirectTable" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
                     <children>
                         <FontAwesomeIcon fill="#d1d1d1" glyphName="TABLE" selectionFill="#ebebeb" size="2em" />
                         <Label text="Bàn" textFill="#d1d1d1">
@@ -98,7 +96,7 @@
                         </Label>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER" layoutX="40.0" layoutY="292.0" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
+                <VBox fx:id="btnCategory" alignment="CENTER" layoutX="40.0" layoutY="292.0" onMouseClicked="#redirectCategory" prefHeight="70.0" prefWidth="70.0" styleClass="item" stylesheets="@style/sidebar.css">
                     <children>
                         <FontAwesomeIcon fill="#d1d1d1" glyphName="CALENDAR" selectionFill="#ebebeb" size="2em" />
                         <Label alignment="CENTER" styleClass="item-label" stylesheets="@style/sidebar.css" text="Danh mục" textAlignment="CENTER" textFill="#d1d1d1">
@@ -112,11 +110,11 @@
         </AnchorPane>
     </left>
     <center>
-        <AnchorPane prefHeight="100.0" prefWidth="1130.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="100.0" prefWidth="1130.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
             <children>
-                <AnchorPane prefHeight="700.0" prefWidth="1130.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane prefHeight="700.0" prefWidth="1130.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <HBox alignment="CENTER_LEFT" layoutX="878.0" layoutY="28.0" prefHeight="40.0" prefWidth="211.0" style="-fx-background-color: #FFFAF4; -fx-background-radius: 50px;" AnchorPane.rightAnchor="40.39999999999992" AnchorPane.topAnchor="28.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="878.0" layoutY="28.0" prefHeight="46.0" prefWidth="234.0" style="-fx-background-color: #FFF; -fx-background-radius: 50px;" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="28.0">
                             <children>
                                 <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -133,255 +131,192 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <AnchorPane layoutX="750.0" layoutY="93.0" prefHeight="584.0" prefWidth="339.0" style="-fx-background-color: #FFFAF4;" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="40.399999999999864" AnchorPane.topAnchor="93.0">
-                            <children>
-                        <Label layoutX="32.0" layoutY="21.0" text="Hóa đơn" textFill="#966c3a">
+                  <VBox layoutY="-2.0" prefHeight="700.0" prefWidth="742.0">
+                     <children>
+                        <Label prefHeight="27.0" prefWidth="744.0" text="Danh mục">
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets bottom="3.0" top="58.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="3.0" top="3.0" />
+                           </padding>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="264.0" layoutY="26.0" prefHeight="18.0" prefWidth="42.0" text="#1" textFill="#d1d1d1" />
-                        <AnchorPane layoutX="32.0" layoutY="57.0" prefHeight="295.0" prefWidth="282.0">
-                           <children>
-                              <HBox prefHeight="80.0" prefWidth="275.0">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="66.0" prefWidth="721.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+                           <VBox.margin>
+                              <Insets bottom="3.0" />
+                           </VBox.margin>
+                           <content>
+                              <HBox fx:id="hBoxCate" alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="719.0" style="-fx-background-color: transparent; -fx-background-radius: 50PX;">
                                  <children>
-                                    <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@image/coffee.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <VBox prefHeight="80.0" prefWidth="100.0">
-                                       <children>
-                                          <Label alignment="TOP_LEFT" prefHeight="40.0" prefWidth="100.0" text="Macchiato" wrapText="true">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                          </Label>
-                                          <Label alignment="BOTTOM_LEFT" prefHeight="40.0" prefWidth="100.0" text="45.000đ" wrapText="true">
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
+                                    <HBox fx:id="hBoxItemAll" alignment="CENTER" onMouseClicked="#listProductClick" prefHeight="35.0" prefWidth="130.0" styleClass="selected-category" stylesheets="@style/main.css">
                                        <HBox.margin>
-                                          <Insets left="8.0" right="7.0" />
+                                          <Insets />
                                        </HBox.margin>
-                                    </VBox>
-                                    <VBox alignment="BOTTOM_CENTER" prefHeight="80.0" prefWidth="80.0">
                                        <children>
-                                          <HBox alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="80.0">
-                                             <children>
-                                                <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 50%;" text="-" textFill="#d1d1d1" />
-                                                <Label alignment="CENTER" prefHeight="27.0" prefWidth="27.0" text="1">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 50%;" text="+" textFill="#d1d1d1" />
-                                             </children>
-                                          </HBox>
+                                          <Button fx:id="btnCateAll" mnemonicParsing="false" onMouseClicked="#listProductClick" stylesheets="@style/main.css" text="Tất cả" textFill="#966c3a" />
                                        </children>
-                                    </VBox>
+                                    </HBox>
                                  </children>
                               </HBox>
-                              <Separator layoutY="94.0" opacity="0.3" prefHeight="1.0" prefWidth="275.0" />
-                              <HBox layoutY="108.0" prefHeight="80.0" prefWidth="275.0">
-                                 <children>
-                                    <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@image/coffee.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <VBox prefHeight="80.0" prefWidth="100.0">
-                                       <children>
-                                          <Label alignment="TOP_LEFT" prefHeight="40.0" prefWidth="100.0" text="Macchiato" wrapText="true">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                          </Label>
-                                          <Label alignment="BOTTOM_LEFT" prefHeight="40.0" prefWidth="100.0" text="45.000đ" wrapText="true">
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets left="8.0" right="7.0" />
-                                       </HBox.margin>
-                                    </VBox>
-                                    <VBox alignment="BOTTOM_CENTER" prefHeight="80.0" prefWidth="80.0">
-                                       <children>
-                                          <HBox alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="80.0">
-                                             <children>
-                                                <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 50%;" text="-" textFill="#d1d1d1" />
-                                                <Label alignment="CENTER" prefHeight="27.0" prefWidth="27.0" text="3">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 50%;" text="+" textFill="#d1d1d1" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                              <Separator layoutY="198.0" opacity="0.3" prefHeight="1.0" prefWidth="275.0" />
-                              <HBox layoutY="210.0" prefHeight="80.0" prefWidth="275.0">
-                                 <children>
-                                    <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@image/coffee.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <VBox prefHeight="80.0" prefWidth="100.0">
-                                       <children>
-                                          <Label alignment="TOP_LEFT" prefHeight="40.0" prefWidth="100.0" text="Macchiato" wrapText="true">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                          </Label>
-                                          <Label alignment="BOTTOM_LEFT" prefHeight="40.0" prefWidth="100.0" text="45.000đ" wrapText="true">
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets left="8.0" right="7.0" />
-                                       </HBox.margin>
-                                    </VBox>
-                                    <VBox alignment="BOTTOM_CENTER" prefHeight="80.0" prefWidth="80.0">
-                                       <children>
-                                          <HBox alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="80.0">
-                                             <children>
-                                                <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 50%;" text="-" textFill="#d1d1d1" />
-                                                <Label alignment="CENTER" prefHeight="27.0" prefWidth="27.0" text="1">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 50%;" text="+" textFill="#d1d1d1" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                        <Label layoutX="33.0" layoutY="418.0" text="Tổng " AnchorPane.bottomAnchor="146.0">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="216.0" layoutY="418.0" prefHeight="2.0" prefWidth="90.0" text="100.000đ" textFill="#1bff17" AnchorPane.bottomAnchor="146.39999999999998">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="33.0" layoutY="449.0" text="Phương thức thanh toán" AnchorPane.bottomAnchor="117.4" AnchorPane.leftAnchor="33.0" />
-                        <RadioButton layoutX="33.0" layoutY="485.0" mnemonicParsing="false" text="Tiền mặt" AnchorPane.bottomAnchor="81.4" />
-                        <RadioButton layoutX="124.0" layoutY="485.0" mnemonicParsing="false" text="Chuyển khoản" AnchorPane.bottomAnchor="81.4" />
-                        <RadioButton layoutX="238.0" layoutY="485.0" mnemonicParsing="false" text="Ví điện tử" AnchorPane.bottomAnchor="81.4" />
-                        <TextArea layoutX="33.0" layoutY="358.0" prefHeight="50.0" prefWidth="275.0" promptText="Ghi chú" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;" wrapText="true" AnchorPane.bottomAnchor="175.6" />
-                        <Button layoutX="33.0" layoutY="526.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #65C56E;" text="Thanh toán" textFill="WHITE" AnchorPane.bottomAnchor="22.799999999999997" />
-                        <Button layoutX="157.0" layoutY="526.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="79.0" style="-fx-background-color: #FFB321;" text="In tạm tính" textFill="WHITE" AnchorPane.bottomAnchor="22.40000000000002" />
-                        <Button layoutX="246.0" layoutY="526.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="63.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;" text="Lưu" AnchorPane.bottomAnchor="22.40000000000002" />
-                            </children>
-                        </AnchorPane>
-                  <HBox layoutY="93.0" prefHeight="45.0" prefWidth="774.0" AnchorPane.leftAnchor="-1.1368683772161603E-13" AnchorPane.rightAnchor="355.19999999999993">
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #FFFAF4; -fx-border-color: #966C3A; -fx-border-radius: 50px;">
+                           </content>
+                           <padding>
+                              <Insets bottom="6.0" />
+                           </padding>
+                        </ScrollPane>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="741.0">
                            <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Tất cả" textFill="#966c3a" />
+                              <Label prefHeight="47.0" prefWidth="606.0" text="Coffee menu">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="120.0" text="12 kết quả">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
                            </children>
+                           <VBox.margin>
+                              <Insets bottom="3.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="3.0" top="3.0" />
+                           </padding>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 50px;">
+                        <HBox alignment="CENTER" prefHeight="520.0" prefWidth="746.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Coffee" textFill="#d1d1d1" />
+                              <ScrollPane fitToWidth="false" hbarPolicy="NEVER" prefHeight="520.0" prefWidth="746.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+                                 <content>
+                                    <GridPane fx:id="productGridPane" alignment="CENTER" hgap="15.0" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: transparent;" vgap="15.0">
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                 </content>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ScrollPane>
                            </children>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 50px;">
-                           <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Trà" textFill="#d1d1d1" />
-                           </children>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 50px;">
-                           <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Nước ép" textFill="#d1d1d1" />
-                           </children>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 50px;">
-                           <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Tráng miệng" textFill="#d1d1d1" />
-                           </children>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </HBox>
                      </children>
-                  </HBox>
-                  <Label layoutY="51.0" text="Danh mục" textFill="#966c3a">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutY="164.0" text="Coffee menu" textFill="#966c3a">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="666.0" layoutY="168.0" text="12 kết quả" textFill="#966c3a" AnchorPane.rightAnchor="397.9999999999999">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                        <ScrollPane layoutY="197.0" prefHeight="481.0" prefWidth="732.0" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="398.0" AnchorPane.topAnchor="196.0">
-                            <content>
-                                <GridPane hgap="20.0" layoutX="2.0" layoutY="209.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="730.0" vgap="20.0">
-                                    <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="377.59999999999997" minWidth="10.0" prefWidth="355.1999450683594" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="355.2000427246094" minWidth="10.0" prefWidth="354.4000549316406" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
+                     <padding>
+                        <Insets left="15.0" right="6.0" />
+                     </padding>
+                  </VBox>
+                  <VBox layoutX="752.0" layoutY="93.0" prefHeight="607.0" prefWidth="359.0" style="-fx-background-color: #FFF;">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="388.0">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                              <Label prefHeight="27.0" prefWidth="191.0" text="Hóa đơn">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="135.0" text="Bàn số:" textFill="#d1d1d1" />
+                              <Button fx:id="txtTableNumber" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="11" textFill="#d1d1d1" />
                            </children>
-                                </GridPane>
-
-                            </content>
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                           </padding>
+                        </HBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="329.0" prefWidth="346.0" style="-fx-background-color: #fff;" vbarPolicy="NEVER">
+                           <content>
+                              <VBox fx:id="vBoxListOrder" prefHeight="0.0" prefWidth="334.0" style="-fx-background-color: #fff;" />
+                           </content>
+                           <padding>
+                              <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                           </padding>
                         </ScrollPane>
+                        <HBox>
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="236.0" text="Tổng ">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="235.0" text="100.000đ" textFill="#65c56e">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="6.0" top="6.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <VBox>
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="342.0" text="Phương thức thanh toán">
+                                 <VBox.margin>
+                                    <Insets bottom="6.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="108.0" text="Tiền mặt" />
+                                    <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="108.0" text="Chuyển khoản">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="6.0" />
+                                       </padding>
+                                    </RadioButton>
+                                    <RadioButton alignment="TOP_LEFT" contentDisplay="RIGHT" mnemonicParsing="false" prefWidth="108.0" text="Ví điện tử">
+                                       <padding>
+                                          <Insets left="34.0" />
+                                       </padding>
+                                    </RadioButton>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="6.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <TextArea prefHeight="50.0" prefWidth="275.0" promptText="Ghi chú" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" wrapText="true">
+                           <VBox.margin>
+                              <Insets bottom="12.0" left="6.0" right="6.0" top="6.0" />
+                           </VBox.margin>
+                        </TextArea>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnCheckOut" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: #65C56E;" text="Thanh toán" textFill="WHITE" />
+                              <Button fx:id="btnPrint" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #966C3A;" text="In tạm tính" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="6.0" right="6.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnSave" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;" text="Lưu" />
+                           </children>
+                           <padding>
+                              <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                     </padding>
+                  </VBox>
                     </children>
                 </AnchorPane>
             </children>

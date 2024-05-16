@@ -14,9 +14,22 @@
 }
 
 .btnAddToOrder:hover {
-    -fx-background-color: #FFB321;
+    -fx-background-color: #966C3A;
     -fx-text-fill: #fff;
 }
+
+.selected-category {
+    -fx-background-color: transparent;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 50px;
+    -fx-border-width: 2px;
+}
+
+.selected-category .button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #d1d1d1;
+}
+
 
 
 

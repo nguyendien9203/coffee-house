@@ -41,6 +41,29 @@ public class CategoryDAO extends DBContext {
         return null;
     }
 
+    public int findIdByName(String name) {
+        try {
+            String sql = "SELECT * FROM categories WHERE name = ?";
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, name);
+            rs = stm.executeQuery();
+            if(rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("findIdByName(): " + e.getMessage());
+        } finally {
+            if(stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        return -1;
+    }
+
     public Category findById(int id) {
         try {
             String sql = "SELECT * FROM categories WHERE id = ?";

@@ -2,6 +2,7 @@ package vn.aptech.c2304l.learning.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -9,7 +10,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
 
-public class StatisticController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class StatisticController implements Initializable {
 
     @FXML
     private VBox btnAuthentication;
@@ -35,10 +39,8 @@ public class StatisticController {
     @FXML
     private VBox btnTable;
 
-    @FXML
-    public void initialize() {
-        btnStatistic.requestFocus();
-        btnStatistic.setFocusTraversable(true);
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
     @FXML

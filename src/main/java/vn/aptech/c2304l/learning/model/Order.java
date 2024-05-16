@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import vn.aptech.c2304l.learning.constant.OrderStatus;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
@@ -17,12 +18,10 @@ import java.util.List;
 public class Order {
     int id;
     User user;
-    List<Product> products;
+    Map<Product, Integer> products = new HashMap<>();
     Table table;
     String paymentMethod;
-    LocalDateTime orderDate;
-    int qty;
+    Timestamp orderDate;
     String note;
     OrderStatus status;
-
 }

@@ -2,6 +2,7 @@ package vn.aptech.c2304l.learning.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,7 +10,10 @@ import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
 
-public class ConfirmNewPasswordController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ConfirmNewPasswordController implements Initializable {
 
     @FXML
     private Button btnBack;
@@ -37,6 +41,10 @@ public class ConfirmNewPasswordController {
         }catch(Exception e) {
             System.out.println("redirectForgetPassword(): " + e.getMessage());
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
 }

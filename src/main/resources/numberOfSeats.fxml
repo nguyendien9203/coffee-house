@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="172.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.NumOfSeatsController">
+   <children>
+      <VBox fx:id="table2Seats" alignment="CENTER" prefHeight="172.0" prefWidth="216.0" style="-fx-background-color: #FFF;" visible="false">
+         <children>
+            <HBox alignment="CENTER" prefHeight="10.0" prefWidth="216.0">
+               <children>
+                  <Label prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;" />
+               </children>
+            </HBox>
+            <StackPane prefHeight="70.0" prefWidth="216.0">
+               <children>
+                  <Label prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;">
+                     <StackPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <Button fx:id="txtTable2Seats" mnemonicParsing="false" onAction="#handleTable2SeatsButton" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #FFF; -fx-background-radius: 5px;">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </StackPane>
+            <HBox alignment="CENTER" prefHeight="10.0" prefWidth="216.0">
+               <children>
+                  <Label prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="table4Seats" alignment="CENTER" prefHeight="172.0" prefWidth="216.0" style="-fx-background-color: #fff;">
+         <children>
+            <HBox alignment="CENTER" prefHeight="10.0" prefWidth="216.0">
+               <children>
+                  <Label prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;" />
+                  <Label prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <StackPane prefHeight="70.0" prefWidth="216.0">
+               <children>
+                  <Label prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;">
+                     <StackPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <Button fx:id="txtTable4Seats" mnemonicParsing="false" onAction="#handleTable4SeatsButton" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </StackPane>
+            <HBox alignment="CENTER" prefHeight="10.0" prefWidth="216.0">
+               <children>
+                  <Label prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;" />
+                  <Label prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="table6Seats" alignment="CENTER" prefHeight="172.0" prefWidth="216.0" style="-fx-background-color: #FFF;" visible="false">
+         <children>
+            <HBox alignment="CENTER" prefHeight="10.0" prefWidth="216.0">
+               <children>
+                  <Label prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;" />
+                  <Label prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <StackPane prefHeight="70.0" prefWidth="216.0">
+               <children>
+                  <Label prefHeight="70.0" prefWidth="180.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;">
+                     <StackPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <Button fx:id="txtTable6Seats" mnemonicParsing="false" onAction="#handleTable6SeatsButton" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #FFF; -fx-background-radius: 5px;">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </StackPane>
+            <HBox alignment="CENTER" prefHeight="10.0" prefWidth="216.0">
+               <children>
+                  <Label prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;" />
+                  <Label prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #e1e1e1; -fx-background-radius: 5px;">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>

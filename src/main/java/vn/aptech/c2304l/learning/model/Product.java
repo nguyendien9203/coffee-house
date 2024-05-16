@@ -19,5 +19,6 @@ public class Product {
     String name;
     BigDecimal price;
     String image;
-    ProductStatus status;
+    String description;
+    String status;
 }
