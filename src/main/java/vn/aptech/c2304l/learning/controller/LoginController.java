@@ -2,6 +2,7 @@ package vn.aptech.c2304l.learning.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,14 +11,25 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
+import vn.aptech.c2304l.learning.constant.UserStatus;
+import vn.aptech.c2304l.learning.dal.UserDAO;
+import vn.aptech.c2304l.learning.model.User;
+import vn.aptech.c2304l.learning.utils.AlertNotification;
+import vn.aptech.c2304l.learning.utils.BcryptUtil;
 
-public class LoginController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoginController implements Initializable {
+    private BcryptUtil bcryptUtil = BcryptUtil.getInstance();
+    AlertNotification alert = new AlertNotification();
 
     @FXML
-    private TextField username;
+    private TextField txt_username;
 
     @FXML
-    private PasswordField password;
+    private PasswordField txt_password;
 
     @FXML
     private Hyperlink btnForgetPassword;
@@ -63,4 +75,42 @@ public class LoginController {
         }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        btnLogin.setOnAction(eh -> {
+            String username = txt_username.getText().trim();
+            String password = txt_password.getText().trim();
+            UserDAO userDAO = new UserDAO();
+
+            if (username.isBlank() || password.isBlank()) {
+                AlertNotification alert = new AlertNotification();
+                alert.showAlert("Lỗi", "Vui lòng nhập tài khoản và mật khẩu.");
+                return;
+            }
+
+            if(userDAO.checkPassword(username, password, UserStatus.INACTIVE.toString())) {
+                alert.showAlert("Thông báo", "Tài khoản đã bị vô hiệu hoá.");
+                return;
+            } else if (userDAO.checkPassword(username, password, UserStatus.ACTIVE.toString())){
+
+                alert.showAlert("Thành công", "Đăng nhập thành công.");
+
+                try {
+                    Parent root = FXMLLoader.load(Main.class.getResource("/menu.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) btnLogin.getScene().getWindow();
+                    stage.setTitle("Menu");
+                    stage.setResizable(false);
+                    stage.setScene(scene);
+                    stage.show();
+                    // Thêm code để hiển thị giao diện mới (root) ở đây
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                AlertNotification alert = new AlertNotification();
+                alert.showAlert("Lỗi", "Tài khoản hoặc mật khẩu không đúng.");
+            }
+        });
+    }
 }

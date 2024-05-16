@@ -28,7 +28,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </FontAwesomeIcon>
-            <TextField fx:id="username" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Tài khoản" style="-fx-background-color: transparent; -fx-border-color: none;">
+            <TextField fx:id="txt_username" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Tài khoản" style="-fx-background-color: transparent; -fx-border-color: none;">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -42,7 +42,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </FontAwesomeIcon>
-            <PasswordField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
+            <PasswordField fx:id="txt_password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0" promptText="Nhập mật khẩu" style="-fx-background-color: transparent; -fx-border-color: none;">
                <padding>
                   <Insets left="10.0" />
                </padding>
