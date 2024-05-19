@@ -9,51 +9,63 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="80.0" prefWidth="348.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.OrderCardController">
+<HBox fx:id="hBoxOrderCard" prefHeight="100.0" prefWidth="334.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.OrderCardController">
 
    <children>
-
-      <AnchorPane fx:id="orderProductImage" prefHeight="68.0" prefWidth="68.0">
-         <HBox.margin>
-            <Insets right="20.0" />
-         </HBox.margin>
-      </AnchorPane>
-      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+      <HBox prefHeight="88.0" prefWidth="322.0">
          <children>
-            <HBox>
+      
+            <AnchorPane fx:id="orderProductImage" prefHeight="88.0" prefWidth="88.0">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </AnchorPane>
+            <VBox prefHeight="66.0" prefWidth="214.0">
                <children>
-                  <Label fx:id="orderProductName" alignment="TOP_LEFT" prefHeight="38.0" prefWidth="234.0" text="Machiano" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="orderProductId" visible="false" />
-                  <Label fx:id="orderProductDescription" visible="false" />
-                  <Label fx:id="btnDeleteItem" alignment="TOP_CENTER" onMouseClicked="#removeOrderItem" prefHeight="4.0" prefWidth="12.0" text="x" textFill="#d1d1d1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <Label fx:id="orderProductPrice" alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="145.0" text="45.000đ" />
-                  <HBox prefHeight="30.0" prefWidth="117.0">
+                  <HBox prefHeight="58.0" prefWidth="135.0">
                      <children>
-                        <Button fx:id="btnDecrement" alignment="CENTER" mnemonicParsing="false" onAction="#decrementQuantity" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;" text="-" />
-                        <TextField fx:id="txtQuantity" alignment="CENTER" prefHeight="31.0" prefWidth="45.0" style="-fx-background-color: transparent;" text="1">
+                        <VBox>
+                           <children>
+                              <Label fx:id="orderProductName" alignment="TOP_LEFT" prefHeight="40.0" prefWidth="222.0" text="Machiano" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox>
+                                 <children>
+                                    <Label fx:id="orderProductId" visible="false" />
+                                    <Label fx:id="orderProductDescription" visible="false" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Label fx:id="btnDeleteItem" alignment="TOP_CENTER" onMouseClicked="#removeOrderItem" prefHeight="38.0" prefWidth="11.0" text="x" textFill="#d1d1d1">
                            <font>
                               <Font size="14.0" />
                            </font>
-                        </TextField>
-                        <Button fx:id="btnIncrement" alignment="CENTER" mnemonicParsing="false" onAction="#incrementQuantity" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;" text="+" />
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label fx:id="orderProductPrice" alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="129.0" text="45.000đ" />
+                        <HBox prefHeight="30.0" prefWidth="122.0">
+                           <children>
+                              <Button fx:id="btnDecrement" alignment="CENTER" mnemonicParsing="false" onAction="#decrementQuantity" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;" text="-" />
+                              <TextField fx:id="txtQuantity" alignment="CENTER" prefHeight="31.0" prefWidth="45.0" style="-fx-background-color: transparent;" text="1">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="btnIncrement" alignment="CENTER" mnemonicParsing="false" onAction="#incrementQuantity" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;" text="+" />
+                           </children>
+                        </HBox>
                      </children>
                   </HBox>
                </children>
-            </HBox>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
    </children>
    <padding>
       <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />

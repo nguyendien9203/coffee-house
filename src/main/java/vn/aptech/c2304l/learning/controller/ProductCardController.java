@@ -7,12 +7,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import vn.aptech.c2304l.learning.model.Product;
+import vn.aptech.c2304l.learning.utils.FormatPriceUtil;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ProductCardController implements Initializable {
+    private FormatPriceUtil formatPriceUtil = FormatPriceUtil.getInstance();
 
 
     @FXML
@@ -38,7 +44,7 @@ public class ProductCardController implements Initializable {
         productId.setText(String.valueOf(product.getId()));
         productName.setText(product.getName());
         productDescription.setText(product.getDescription());
-        productPrice.setText(String.valueOf(product.getPrice()));
+        productPrice.setText(formatPriceUtil.formatPrice(product.getPrice()));
         displayImagePreview(product.getImage());
     }
 
@@ -67,7 +73,6 @@ public class ProductCardController implements Initializable {
             menuDetailController.addProductToOrder(product);
         }
     }
-
 
 
     @Override

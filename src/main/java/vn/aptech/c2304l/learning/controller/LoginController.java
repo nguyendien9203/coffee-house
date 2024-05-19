@@ -16,6 +16,7 @@ import vn.aptech.c2304l.learning.dal.UserDAO;
 import vn.aptech.c2304l.learning.model.User;
 import vn.aptech.c2304l.learning.utils.AlertNotification;
 import vn.aptech.c2304l.learning.utils.BcryptUtil;
+import vn.aptech.c2304l.learning.utils.UserSession;
 
 import java.io.IOException;
 import java.net.URL;
@@ -96,6 +97,10 @@ public class LoginController implements Initializable {
                 alert.showAlert("Thành công", "Đăng nhập thành công.");
 
                 try {
+
+                    User loggedInUser = userDAO.findUserByUsername(username);
+                    UserSession.getInstance().setLoggedInUser(loggedInUser);
+
                     Parent root = FXMLLoader.load(Main.class.getResource("/menu.fxml"));
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
@@ -103,7 +108,7 @@ public class LoginController implements Initializable {
                     stage.setResizable(false);
                     stage.setScene(scene);
                     stage.show();
-                    // Thêm code để hiển thị giao diện mới (root) ở đây
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
