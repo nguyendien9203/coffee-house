@@ -95,6 +95,8 @@ public class LoginController implements Initializable {
             } else if (userDAO.checkPassword(username, password, UserStatus.ACTIVE.toString())){
 
                 alert.showAlert("Thành công", "Đăng nhập thành công.");
+                String role = userDAO.getRole(username);
+                System.out.println(role);
 
                 try {
 
