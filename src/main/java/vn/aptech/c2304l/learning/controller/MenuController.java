@@ -7,16 +7,20 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
+import vn.aptech.c2304l.learning.dal.OrderDAO;
 import vn.aptech.c2304l.learning.dal.TableDAO;
+import vn.aptech.c2304l.learning.model.Order;
 import vn.aptech.c2304l.learning.model.Table;
+import vn.aptech.c2304l.learning.model.User;
+import vn.aptech.c2304l.learning.utils.UserSession;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -25,6 +29,7 @@ import java.util.ResourceBundle;
 public class MenuController implements Initializable {
 
     private TableDAO tdao = new TableDAO();
+    private User loggedInUser = UserSession.getInstance().getLoggedInUser();
 
     @FXML
     private VBox btnAuthentication;
@@ -54,9 +59,11 @@ public class MenuController implements Initializable {
     private GridPane tableGridPane;
 
     @FXML
-    private StackPane tableItem;
+    private Label labelFullName;
+
     @FXML
-    private Label labelUsername;
+    private StackPane tableItem;
+
 
     public void findAll() {
         ObservableList<Table> listData = tdao.findAll();
@@ -121,6 +128,12 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        if (loggedInUser != null) {
+            labelFullName.setText(loggedInUser.getFullname());
+        }
+
+
 
         findAll();
     }
@@ -216,6 +229,7 @@ public class MenuController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }  catch (Exception e) {
+            e.printStackTrace();
             System.out.println("redirectStatistic(): " + e.getMessage());
         }
     }

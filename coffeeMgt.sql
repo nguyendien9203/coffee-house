@@ -1,7 +1,7 @@
 CREATE TABLE `users` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `role` VARCHAR(50) NOT NULL,
-  `fullname` VARCHAR(50),
+  `fullname` VARCHAR(50) NOT NULL,
   `username` VARCHAR(50) NOT NULL UNIQUE,
   `password` VARCHAR(200) NOT NULL,
   `status` VARCHAR(20) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE `categories` (
 
 CREATE TABLE `products` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
-  `category_id` INT,
+  `category_id` INT NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   `price` DECIMAL(10,2) NOT NULL,
   `product_image` VARCHAR(500),
@@ -37,22 +37,34 @@ CREATE TABLE `tables` (
 );
 
 CREATE TABLE `orders` (
-  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `code` VARCHAR(255) PRIMARY KEY NOT NULL,
   `user_id` INT NOT NULL,
-  `product_id` INT NOT NULL,
   `table_id` INT NOT NULL,
-  `payment_method` VARCHAR(50) NOT NULL,
-  `order_date` DATETIME NOT NULL,
-  `qty` INT NOT NULL,
+  `payment_method` VARCHAR(50),
+  `order_start_time` TIMESTAMP NOT NULL,
+  `order_end_time` TIMESTAMP,
   `order_note` VARCHAR(255),
   `status` VARCHAR(30) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+CREATE TABLE `order_items` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `code` VARCHAR(255) NOT NULL,
+  `product_id` INT NOT NULL,
+  `qty` INT NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+
 ALTER TABLE `orders` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
-ALTER TABLE `orders` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+ALTER TABLE `order_items` ADD FOREIGN KEY (`code`) REFERENCES `orders` (`code`);
+
+ALTER TABLE `order_items` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 ALTER TABLE `orders` ADD FOREIGN KEY (`table_id`) REFERENCES `tables` (`id`);
 

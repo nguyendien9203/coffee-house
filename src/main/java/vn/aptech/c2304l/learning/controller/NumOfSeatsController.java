@@ -1,5 +1,6 @@
 package vn.aptech.c2304l.learning.controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,12 +14,16 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
+import vn.aptech.c2304l.learning.dal.OrderDAO;
+import vn.aptech.c2304l.learning.model.Order;
 import vn.aptech.c2304l.learning.model.Table;
+import vn.aptech.c2304l.learning.utils.UserSession;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class NumOfSeatsController implements Initializable {
+    private OrderDAO odao = new OrderDAO();
     @FXML
     private VBox table2Seats;
 
@@ -39,29 +44,43 @@ public class NumOfSeatsController implements Initializable {
 
     private Table table;
 
+    private ObservableList<Order> orders;
+
     public void setData(Table table) {
+        this.orders = odao.findAll();
         this.table = table;
         if (table.getNumOfSeats() == 2) {
             txtTable2Seats.setText(String.valueOf(table.getTableNumber()));
             table2Seats.setVisible(true);
             table4Seats.setVisible(false);
             table6Seats.setVisible(false);
+            checkAndSetButtonColor(txtTable2Seats);
         } else if (table.getNumOfSeats() == 4) {
             txtTable4Seats.setText(String.valueOf(table.getTableNumber()));
             table2Seats.setVisible(false);
             table4Seats.setVisible(true);
             table6Seats.setVisible(false);
+            checkAndSetButtonColor(txtTable4Seats);
         } else if (table.getNumOfSeats() == 6) {
             txtTable6Seats.setText(String.valueOf(table.getTableNumber()));
             table2Seats.setVisible(false);
             table4Seats.setVisible(false);
             table6Seats.setVisible(true);
+            checkAndSetButtonColor(txtTable6Seats);
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    private void checkAndSetButtonColor(Button button) {
+        int tableNumber = Integer.parseInt(button.getText());
+        ObservableList<Order> unpaidOrders = odao.findUnpaidOrdersByTable(tableNumber);
+        if (!unpaidOrders.isEmpty()) {
+            button.setStyle("-fx-background-color: #966C3A; -fx-text-fill: #ffffff;");
+        }
     }
 
     private int selectedTableNumber;
@@ -98,6 +117,12 @@ public class NumOfSeatsController implements Initializable {
             MenuDetailController controller = loader.getController();
             controller.setTable(table);
 
+            ObservableList<Order> orders = odao.findUnpaidOrdersByTable(table.getTableNumber());
+            if (!orders.isEmpty()) {
+                Order order = orders.get(0);
+                controller.loadOrderItems(order);
+            }
+
             Scene scene = new Scene(root);
             Stage stage = (Stage) button.getScene().getWindow();
             stage.setTitle("Order");
@@ -110,4 +135,13 @@ public class NumOfSeatsController implements Initializable {
             e.printStackTrace();
         }
     }
+
+//    public boolean checkOrderUnPaid(Order order) {
+//
+//    }
+//
+//    public void changeButtonColor(Button button) {
+//        if()
+//        button.setStyle("-fx-background-color: #966C3A;");
+//    }
 }

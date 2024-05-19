@@ -114,23 +114,6 @@
             <children>
                 <AnchorPane prefHeight="700.0" prefWidth="1130.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <HBox alignment="CENTER_LEFT" layoutX="878.0" layoutY="28.0" prefHeight="46.0" prefWidth="234.0" style="-fx-background-color: #FFF; -fx-background-radius: 50px;" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="28.0">
-                            <children>
-                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@image/user_847969.png" />
-                                    </image>
-                                </ImageView>
-                                <Label text="Admin">
-                                    <font>
-                                        <Font name="System Bold" size="14.0" />
-                                    </font>
-                                    <HBox.margin>
-                                        <Insets left="10.0" />
-                                    </HBox.margin>
-                                </Label>
-                            </children>
-                        </HBox>
                   <VBox layoutY="-2.0" prefHeight="700.0" prefWidth="742.0">
                      <children>
                         <Label prefHeight="27.0" prefWidth="744.0" text="Danh mục">
@@ -210,17 +193,17 @@
                         <Insets left="15.0" right="6.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="752.0" layoutY="93.0" prefHeight="607.0" prefWidth="359.0" style="-fx-background-color: #FFF;">
+                  <VBox layoutX="747.0" layoutY="93.0" prefHeight="607.0" prefWidth="359.0" style="-fx-background-color: #FFF;">
                      <children>
                         <HBox alignment="CENTER" prefHeight="27.0" prefWidth="388.0">
                            <children>
-                              <Label prefHeight="27.0" prefWidth="191.0" text="Hóa đơn">
+                              <Label prefHeight="27.0" prefWidth="225.0" text="Hóa đơn">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="135.0" text="Bàn số:" textFill="#d1d1d1" />
-                              <Button fx:id="txtTableNumber" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="11" textFill="#d1d1d1" />
+                              <Label alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="79.0" text="Bàn số:" textFill="#d1d1d1" />
+                              <Button fx:id="txtTableNumber" mnemonicParsing="false" prefHeight="26.0" prefWidth="41.0" style="-fx-background-color: transparent;" text="11" textFill="#d1d1d1" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
@@ -244,7 +227,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="235.0" text="100.000đ" textFill="#65c56e">
+                              <Label fx:id="labelTotalOrder" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="235.0" text="100.000đ" textFill="#65c56e">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -266,8 +249,8 @@
                               </Label>
                               <HBox alignment="CENTER">
                                  <children>
-                                    <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="108.0" text="Tiền mặt" />
-                                    <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="108.0" text="Chuyển khoản">
+                                    <RadioButton fx:id="radioButtonCash" mnemonicParsing="false" prefHeight="18.0" prefWidth="108.0" text="Tiền mặt" />
+                                    <RadioButton fx:id="radioButtonBankTransfer" mnemonicParsing="false" prefHeight="18.0" prefWidth="108.0" text="Chuyển khoản">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -275,7 +258,7 @@
                                           <Insets left="6.0" />
                                        </padding>
                                     </RadioButton>
-                                    <RadioButton alignment="TOP_LEFT" contentDisplay="RIGHT" mnemonicParsing="false" prefWidth="108.0" text="Ví điện tử">
+                                    <RadioButton fx:id="radioButtonEWallet" alignment="TOP_LEFT" contentDisplay="RIGHT" mnemonicParsing="false" prefWidth="108.0" text="Ví điện tử">
                                        <padding>
                                           <Insets left="34.0" />
                                        </padding>
@@ -293,20 +276,18 @@
                               <Insets bottom="6.0" />
                            </VBox.margin>
                         </VBox>
-                        <TextArea prefHeight="50.0" prefWidth="275.0" promptText="Ghi chú" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" wrapText="true">
+                        <TextArea fx:id="orderNote" prefHeight="50.0" prefWidth="275.0" promptText="Ghi chú" style="-fx-background-color: transparent; -fx-border-color: #e1e1e1; -fx-border-radius: 5px;" wrapText="true">
                            <VBox.margin>
                               <Insets bottom="12.0" left="6.0" right="6.0" top="6.0" />
                            </VBox.margin>
                         </TextArea>
                         <HBox alignment="CENTER">
                            <children>
-                              <Button fx:id="btnCheckOut" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: #65C56E;" text="Thanh toán" textFill="WHITE" />
-                              <Button fx:id="btnPrint" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #966C3A;" text="In tạm tính" textFill="WHITE">
+                              <Button fx:id="btnCheckOut" mnemonicParsing="false" onAction="#checkoutSavedOrder" prefHeight="34.0" prefWidth="251.0" style="-fx-background-color: #65C56E;" text="Thanh toán" textFill="WHITE">
                                  <HBox.margin>
-                                    <Insets left="6.0" right="6.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="btnSave" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;" text="Lưu" />
+                                    <Insets right="10.0" />
+                                 </HBox.margin></Button>
+                              <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveOrder" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: #d1d1d1; -fx-border-radius: 5px;" text="Lưu" />
                            </children>
                            <padding>
                               <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
@@ -317,6 +298,31 @@
                         <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                      </padding>
                   </VBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="877.0" layoutY="28.0" prefHeight="46.0" prefWidth="230.0" style="-fx-background-color: #FFF; -fx-background-radius: 50px;">
+                     <children>
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/user_847969.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Hello,">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelFullName" text="Dien">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
                     </children>
                 </AnchorPane>
             </children>

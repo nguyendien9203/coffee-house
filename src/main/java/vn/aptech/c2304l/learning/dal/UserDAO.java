@@ -1,5 +1,6 @@
 package vn.aptech.c2304l.learning.dal;
 
+import vn.aptech.c2304l.learning.constant.UserRole;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import vn.aptech.c2304l.learning.constant.UserRole;
@@ -65,6 +66,37 @@ public class UserDAO extends DBContext {
             }
         }
         return false;
+    }
+
+    public User findUserByUsername(String username) {
+        try {
+            String sql = "SELECT * FROM users WHERE username = ?";
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            rs = stm.executeQuery();
+            if(rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt(1));
+                user.setRole(UserRole.valueOf(rs.getString(2)));
+                user.setFullname(rs.getString(3));
+                user.setUsername(rs.getString(4));
+                user.setPassword(rs.getString(5));
+
+                return user;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("findUserByUsername(): " + e.getMessage());
+        } finally {
+            if (stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        return null;
     }
 
     BcryptUtil bcryptUtil = BcryptUtil.getInstance();

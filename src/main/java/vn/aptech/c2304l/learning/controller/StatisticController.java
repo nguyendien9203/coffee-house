@@ -5,15 +5,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
+import vn.aptech.c2304l.learning.dal.OrderDAO;
+import vn.aptech.c2304l.learning.model.User;
+import vn.aptech.c2304l.learning.utils.FormatPriceUtil;
+import vn.aptech.c2304l.learning.utils.UserSession;
 
+import java.math.BigDecimal;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class StatisticController implements Initializable {
+    private OrderDAO odao = new OrderDAO();
+    private FormatPriceUtil formatPriceUtil = FormatPriceUtil.getInstance();
+    private User loggedInUser = UserSession.getInstance().getLoggedInUser();
 
     @FXML
     private VBox btnAuthentication;
@@ -39,8 +52,87 @@ public class StatisticController implements Initializable {
     @FXML
     private VBox btnTable;
 
+    @FXML
+    private Label labelFullName;
+
+    @FXML
+    private Label labelTotalOrderInDay;
+
+    @FXML
+    private Label labelTotalRevenueInDay;
+
+    @FXML
+    private Label labelTotalRevenueInMonth;
+
+    @FXML
+    private LineChart<String, Number> lineChart;
+
+    private void updateTotalOrderInDay() {
+        int totalOrderInDay = odao.totalOrderInDay();
+        if (totalOrderInDay != -1) {
+            labelTotalOrderInDay.setText(String.valueOf(totalOrderInDay));
+            System.out.println(" Tổng hóa đơn trong 1 ngày: " + totalOrderInDay);
+        } else {
+            System.out.println(totalOrderInDay);
+        }
+    }
+
+    private void updateRevenueDisplays() {
+        BigDecimal totalRevenueInDay = odao.totalRevenueInDay();
+        if (totalRevenueInDay != null) {
+            labelTotalRevenueInDay.setText(formatPriceUtil.formatPrice(totalRevenueInDay));
+            System.out.println("Tổng doanh thu trong 1 ngày: " + totalRevenueInDay);
+        } else {
+            System.out.println(totalRevenueInDay);
+        }
+
+        BigDecimal totalRevenueInMonth = odao.totalRevenueInMonth();
+        if (totalRevenueInMonth != null) {
+            labelTotalRevenueInMonth.setText(formatPriceUtil.formatPrice(totalRevenueInMonth));
+            System.out.println("Tổng doanh thu trong 1 tháng: " + totalRevenueInMonth);
+        } else {
+            System.out.println(totalRevenueInMonth);
+        }
+    }
+
+    private void setupLineChart() {
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Ngày");
+
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Doanh thu");
+
+        lineChart.setTitle("Thông kê doanh thu hằng ngày");
+        lineChart.getXAxis().setLabel("Ngày");
+        lineChart.getYAxis().setLabel("Tổng doanh thu");
+    }
+
+    private void updateDailyRevenueChart() {
+        Map<String, BigDecimal> dailyRevenueData = odao.getDailyRevenueData();
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Doanh thu mỗi ngày");
+
+        for (Map.Entry<String, BigDecimal> entry : dailyRevenueData.entrySet()) {
+            series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+        }
+
+        lineChart.getData().clear();
+        lineChart.getData().add(series);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (loggedInUser != null) {
+            labelFullName.setText(loggedInUser.getFullname());
+        }
+
+        updateTotalOrderInDay();
+
+        updateRevenueDisplays();
+
+        setupLineChart();
+        updateDailyRevenueChart();
     }
 
     @FXML

@@ -16,6 +16,7 @@ import vn.aptech.c2304l.learning.dal.UserDAO;
 import vn.aptech.c2304l.learning.model.User;
 import vn.aptech.c2304l.learning.utils.AlertNotification;
 import vn.aptech.c2304l.learning.utils.BcryptUtil;
+import vn.aptech.c2304l.learning.utils.UserSession;
 
 import java.io.IOException;
 import java.net.URL;
@@ -98,13 +99,18 @@ public class LoginController implements Initializable {
                 System.out.println(role);
 
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
-                    Parent root = loader.load();
-                    MenuController menuController = loader.getController();
-                    menuController.setRole(role);
-                    loader.setController(menuController);
+
+                    User loggedInUser = userDAO.findUserByUsername(username);
+                    UserSession.getInstance().setLoggedInUser(loggedInUser);
+
+                    Parent root = FXMLLoader.load(Main.class.getResource("/menu.fxml"));
+                    Scene scene = new Scene(root);
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
-                    stage.setScene(new Scene(root));
+                    stage.setTitle("Menu");
+                    stage.setResizable(false);
+                    stage.setScene(scene);
+                    stage.show();
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
