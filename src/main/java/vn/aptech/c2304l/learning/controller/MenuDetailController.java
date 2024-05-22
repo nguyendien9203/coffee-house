@@ -123,9 +123,37 @@ public class MenuDetailController implements Initializable {
         this.tableOrderedButton = tableOrderedButton;
     }
 
+    private String role;
+
+    public void setRole(String role) {
+        this.role = role;
+        updateUI();
+    }
+
+    private void updateUI() {
+        if(Objects.equals(role, "ADMIN")) {
+            btnProduct.setVisible(true);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(true);
+            btnAuthentication.setVisible(true);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(true);
+            btnTable.setVisible(true);
+            btnCategory.setVisible(true);
+        } else {
+            btnProduct.setVisible(false);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(false);
+            btnAuthentication.setVisible(false);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(true);
+            btnTable.setVisible(false);
+            btnCategory.setVisible(false);
+        }
+    }
+
     public void setTable(Table table) {
         this.table = table;
-        System.out.println("setTableNumber: " + table);
         txtTableNumber.setText(String.valueOf(table.getTableNumber()));
     }
 
@@ -162,8 +190,8 @@ public class MenuDetailController implements Initializable {
         }
     }
 
-    public void findAllProduct() {
-        ObservableList<Product> listData = pdao.findAll();
+    public void findAllProductActive() {
+        ObservableList<Product> listData = pdao.findAllProductActive();
         displayProducts(listData);
     }
 
@@ -175,7 +203,7 @@ public class MenuDetailController implements Initializable {
     @FXML
     public void listProductClick() {
         try {
-            findAllProduct();
+            findAllProductActive();
         } catch (Exception e) {
             System.out.println("listProductClick(): " + e.getMessage());
         }
@@ -223,7 +251,6 @@ public class MenuDetailController implements Initializable {
         }
 
         updateOrderListView();
-        System.out.println(products);
     }
 
     public void loadOrderItems(Order order) {
@@ -232,7 +259,6 @@ public class MenuDetailController implements Initializable {
             products.put(item.getProduct(), item.getQuantity());
         }
         updateOrderListView();
-        System.out.println("Sp: " + products);
     }
 
     private void updateOrderListView() {
@@ -323,8 +349,6 @@ public class MenuDetailController implements Initializable {
             newOrder.setOrderItems(orderItemList);
 
             if (odao.saveOrder(newOrder)) {
-                System.out.println("order dc tạo: " + newOrder);
-
                 alertNotification.showAlert("Thông báo", "Hóa đơn ở bàn số " + table.getTableNumber() + " đã được tạo.");
                 clearOrderDetails();
             } else {
@@ -344,12 +368,9 @@ public class MenuDetailController implements Initializable {
                 orderItem.setProduct(product);
                 orderItem.setQuantity(quantity);
 
-                // Kiểm tra xem sản phẩm đã tồn tại trong đơn hàng hay chưa
                 if (existingOrder.containsProduct(product)) {
-                    // Nếu sản phẩm đã tồn tại, cập nhật số lượng
                     existingOrder.updateProductQuantity(product, quantity);
                 } else {
-                    // Nếu sản phẩm chưa tồn tại, thêm mới sản phẩm vào đơn hàng
                     orderItemList.add(orderItem);
                 }
             }
@@ -357,19 +378,16 @@ public class MenuDetailController implements Initializable {
 
             existingOrder.addOrderItems(orderItemList);
 
-            // Cập nhật đơn hàng trong cơ sở dữ liệu
             if (odao.updateSavaOrder(table.getTableNumber(), existingOrder)) {
-                // Đã cập nhật đơn hàng thành công
-                System.out.println("Đã cập nhật đơn hàng: " + existingOrder);
                 alertNotification.showAlert("Thông báo", "Đã cập nhật đơn hàng.");
                 clearOrderDetails();
 
             } else {
-                // Không thể cập nhật đơn hàng
                 alertNotification.showAlert("Thông báo", "Không thể cập nhật đơn hàng.");
             }
 
         }
+        System.out.println(products);
     }
 
     @FXML
@@ -401,9 +419,7 @@ public class MenuDetailController implements Initializable {
                 orderItem.setProduct(product);
                 orderItem.setQuantity(quantity);
 
-                // Kiểm tra xem sản phẩm đã tồn tại trong đơn hàng hay chưa
                 if (order.containsProduct(product)) {
-                    // Nếu sản phẩm đã tồn tại, cập nhật số lượng
                     order.updateProductQuantity(product, quantity);
                 } else {
                     orderItemList.add(orderItem);
@@ -466,6 +482,7 @@ public class MenuDetailController implements Initializable {
 
         if (loggedInUser != null) {
             labelFullName.setText(loggedInUser.getFullname());
+            this.setRole(loggedInUser.getRole().toString());
         }
 
         paymentMethodToggleGroup = new ToggleGroup();
@@ -476,14 +493,13 @@ public class MenuDetailController implements Initializable {
         paymentMethodToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 RadioButton selectedRadioButton = (RadioButton) newValue;
-                System.out.println("Đã chọn: " + selectedRadioButton.getText());
                 radioPaymentMethod = selectedRadioButton.getText();
             }
         });
 
 
         findAllCategory();
-        findAllProduct();
+        findAllProductActive();
 
     }
 

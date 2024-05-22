@@ -21,6 +21,7 @@ import vn.aptech.c2304l.learning.utils.UserSession;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class StatisticController implements Initializable {
@@ -67,11 +68,39 @@ public class StatisticController implements Initializable {
     @FXML
     private LineChart<String, Number> lineChart;
 
+    private String role;
+
+    public void setRole(String role) {
+        this.role = role;
+        updateUI();
+    }
+
+    private void updateUI() {
+        if(Objects.equals(role, "ADMIN")) {
+            btnProduct.setVisible(true);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(true);
+            btnAuthentication.setVisible(true);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(true);
+            btnTable.setVisible(true);
+            btnCategory.setVisible(true);
+        } else {
+            btnProduct.setVisible(false);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(false);
+            btnAuthentication.setVisible(false);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(true);
+            btnTable.setVisible(false);
+            btnCategory.setVisible(false);
+        }
+    }
+
     private void updateTotalOrderInDay() {
         int totalOrderInDay = odao.totalOrderInDay();
         if (totalOrderInDay != -1) {
             labelTotalOrderInDay.setText(String.valueOf(totalOrderInDay));
-            System.out.println(" Tổng hóa đơn trong 1 ngày: " + totalOrderInDay);
         } else {
             System.out.println(totalOrderInDay);
         }
@@ -81,7 +110,6 @@ public class StatisticController implements Initializable {
         BigDecimal totalRevenueInDay = odao.totalRevenueInDay();
         if (totalRevenueInDay != null) {
             labelTotalRevenueInDay.setText(formatPriceUtil.formatPrice(totalRevenueInDay));
-            System.out.println("Tổng doanh thu trong 1 ngày: " + totalRevenueInDay);
         } else {
             System.out.println(totalRevenueInDay);
         }
@@ -89,7 +117,6 @@ public class StatisticController implements Initializable {
         BigDecimal totalRevenueInMonth = odao.totalRevenueInMonth();
         if (totalRevenueInMonth != null) {
             labelTotalRevenueInMonth.setText(formatPriceUtil.formatPrice(totalRevenueInMonth));
-            System.out.println("Tổng doanh thu trong 1 tháng: " + totalRevenueInMonth);
         } else {
             System.out.println(totalRevenueInMonth);
         }
@@ -125,7 +152,11 @@ public class StatisticController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (loggedInUser != null) {
             labelFullName.setText(loggedInUser.getFullname());
+            this.setRole(loggedInUser.getRole().toString());
         }
+
+        labelTotalRevenueInDay.setText("0");
+        labelTotalRevenueInMonth.setText("0");
 
         updateTotalOrderInDay();
 

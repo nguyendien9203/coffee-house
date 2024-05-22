@@ -23,6 +23,7 @@ import vn.aptech.c2304l.learning.utils.UserSession;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class OrderController implements Initializable {
@@ -110,6 +111,35 @@ public class OrderController implements Initializable {
 
     ObservableList<Order> filteredProducts;
     ObservableList<Order> searchResult;
+
+    private String role;
+
+    public void setRole(String role) {
+        this.role = role;
+        updateUI();
+    }
+
+    private void updateUI() {
+        if(Objects.equals(role, "ADMIN")) {
+            btnProduct.setVisible(true);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(true);
+            btnAuthentication.setVisible(true);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(true);
+            btnTable.setVisible(true);
+            btnCategory.setVisible(true);
+        } else {
+            btnProduct.setVisible(false);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(false);
+            btnAuthentication.setVisible(false);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(true);
+            btnTable.setVisible(false);
+            btnCategory.setVisible(false);
+        }
+    }
 
 
     private String[] listOptions = {"Xóa bộ lọc", "PAID", "UNPAID"};
@@ -203,6 +233,7 @@ public class OrderController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (loggedInUser != null) {
             labelFullName.setText(loggedInUser.getFullname());
+            this.setRole(loggedInUser.getRole().toString());
         }
 
         listFilter();

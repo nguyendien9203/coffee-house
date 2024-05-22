@@ -49,7 +49,7 @@
             </PasswordField>
          </children>
       </HBox>
-      <Button fx:id="btnRegister" layoutX="63.0" layoutY="412.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: #966C3A; -fx-background-radius: 5px;" text="Đăng ký" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnRegister" layoutX="63.0" layoutY="412.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#register" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: #966C3A; -fx-background-radius: 5px;" text="Đăng ký" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>

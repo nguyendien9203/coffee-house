@@ -120,7 +120,7 @@ public class MenuController implements Initializable {
             btnStatistic.setVisible(false);
             btnAuthentication.setVisible(false);
             btnLogout.setVisible(true);
-            btnMenu.setVisible(false);
+            btnMenu.setVisible(true);
             btnTable.setVisible(false);
             btnCategory.setVisible(false);
         }
@@ -131,6 +131,7 @@ public class MenuController implements Initializable {
 
         if (loggedInUser != null) {
             labelFullName.setText(loggedInUser.getFullname());
+            this.setRole(loggedInUser.getRole().toString());
         }
 
 

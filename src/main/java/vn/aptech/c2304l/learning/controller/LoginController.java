@@ -76,48 +76,49 @@ public class LoginController implements Initializable {
         }
     }
 
+    @FXML
+    public void login() {
+        String username = txt_username.getText().trim();
+        String password = txt_password.getText().trim();
+        UserDAO userDAO = new UserDAO();
+
+        if (username.isBlank() || password.isBlank()) {
+            AlertNotification alert = new AlertNotification();
+            alert.showAlert("Lỗi", "Vui lòng nhập tài khoản và mật khẩu.");
+            return;
+        }
+
+        if(userDAO.checkPassword(username, password, UserStatus.INACTIVE.toString())) {
+            alert.showAlert("Thông báo", "Tài khoản đã bị vô hiệu hoá.");
+            return;
+        } else if (userDAO.checkPassword(username, password, UserStatus.ACTIVE.toString())){
+
+            alert.showAlert("Thành công", "Đăng nhập thành công.");
+
+            try {
+
+                User loggedInUser = userDAO.findUserByUsername(username);
+                UserSession.getInstance().setLoggedInUser(loggedInUser);
+
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("/menu.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) btnLogin.getScene().getWindow();
+                stage.setTitle("Menu");
+                stage.setResizable(false);
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            AlertNotification alert = new AlertNotification();
+            alert.showAlert("Lỗi", "Tài khoản hoặc mật khẩu không đúng.");
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btnLogin.setOnAction(eh -> {
-            String username = txt_username.getText().trim();
-            String password = txt_password.getText().trim();
-            UserDAO userDAO = new UserDAO();
-
-            if (username.isBlank() || password.isBlank()) {
-                AlertNotification alert = new AlertNotification();
-                alert.showAlert("Lỗi", "Vui lòng nhập tài khoản và mật khẩu.");
-                return;
-            }
-
-            if(userDAO.checkPassword(username, password, UserStatus.INACTIVE.toString())) {
-                alert.showAlert("Thông báo", "Tài khoản đã bị vô hiệu hoá.");
-                return;
-            } else if (userDAO.checkPassword(username, password, UserStatus.ACTIVE.toString())){
-
-                alert.showAlert("Thành công", "Đăng nhập thành công.");
-                String role = userDAO.getRole(username);
-                System.out.println(role);
-
-                try {
-
-                    User loggedInUser = userDAO.findUserByUsername(username);
-                    UserSession.getInstance().setLoggedInUser(loggedInUser);
-
-                    Parent root = FXMLLoader.load(Main.class.getResource("/menu.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) btnLogin.getScene().getWindow();
-                    stage.setTitle("Menu");
-                    stage.setResizable(false);
-                    stage.setScene(scene);
-                    stage.show();
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                AlertNotification alert = new AlertNotification();
-                alert.showAlert("Lỗi", "Tài khoản hoặc mật khẩu không đúng.");
-            }
-        });
     }
 }

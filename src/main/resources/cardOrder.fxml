@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="hBoxOrderCard" prefHeight="100.0" prefWidth="334.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.OrderCardController">
+<HBox fx:id="hBoxOrderCard" prefHeight="100.0" prefWidth="334.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.OrderCardController">
 
    <children>
       <HBox prefHeight="88.0" prefWidth="322.0">

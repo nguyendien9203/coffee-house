@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="hBoxBillCard" prefHeight="100.0" prefWidth="334.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.CardBillController">
+<HBox fx:id="hBoxBillCard" prefHeight="100.0" prefWidth="334.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.CardBillController">
 
    <children>
       <HBox prefHeight="88.0" prefWidth="322.0">
@@ -31,8 +31,8 @@
                               </Label>
                               <HBox>
                                  <children>
-                                    <Label fx:id="orderProductId" visible="false" />
-                                    <Label fx:id="orderProductDescription" visible="false" />
+                                    <Label fx:id="billProductId" visible="false" />
+                                    <Label fx:id="billProductDescription" visible="false" />
                                  </children>
                               </HBox>
                            </children>

@@ -19,14 +19,17 @@ import vn.aptech.c2304l.learning.Main;
 import vn.aptech.c2304l.learning.dal.CategoryDAO;
 import vn.aptech.c2304l.learning.model.Category;
 import vn.aptech.c2304l.learning.model.Table;
+import vn.aptech.c2304l.learning.model.User;
 import vn.aptech.c2304l.learning.utils.AlertConfirmation;
 import vn.aptech.c2304l.learning.utils.AlertNotification;
+import vn.aptech.c2304l.learning.utils.UserSession;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CategoryController implements Initializable {
@@ -34,6 +37,8 @@ public class CategoryController implements Initializable {
     private CategoryDAO cdao = new CategoryDAO();
     private AlertNotification alertNotification = new AlertNotification();
     private AlertConfirmation alertConfirmation = new AlertConfirmation();
+
+    private User loggedInUser = UserSession.getInstance().getLoggedInUser();
 
     @FXML
     private Button btnAdd;
@@ -97,6 +102,38 @@ public class CategoryController implements Initializable {
 
     @FXML
     private TextField txtSearch;
+
+    @FXML
+    private Label labelFullName;
+
+    private String role;
+
+    public void setRole(String role) {
+        this.role = role;
+        updateUI();
+    }
+
+    private void updateUI() {
+        if(Objects.equals(role, "ADMIN")) {
+            btnProduct.setVisible(true);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(true);
+            btnAuthentication.setVisible(true);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(true);
+            btnTable.setVisible(true);
+            btnCategory.setVisible(true);
+        } else {
+            btnProduct.setVisible(false);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(false);
+            btnAuthentication.setVisible(false);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(true);
+            btnTable.setVisible(false);
+            btnCategory.setVisible(false);
+        }
+    }
 
     private int id;
     private String name;
@@ -314,6 +351,10 @@ public class CategoryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (loggedInUser != null) {
+            labelFullName.setText(loggedInUser.getFullname());
+            this.setRole(loggedInUser.getRole().toString());
+        }
 
         findAll();
         addTableViewSelectionListener();

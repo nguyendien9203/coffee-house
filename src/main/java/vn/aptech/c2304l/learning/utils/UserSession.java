@@ -5,7 +5,6 @@ import vn.aptech.c2304l.learning.model.User;
 public class UserSession {
     private static UserSession instance;
     private User loggedInUser;
-    private String currentCodeBill;
 
     private UserSession() { }
 

@@ -34,7 +34,6 @@ public class CategoryCardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cateName.setOnAction(event -> {
             if (category != null && menuDetailController != null) {
-                System.out.println("Giá trị của button: " + category.getName() + " " + category.getId());
                 menuDetailController.findProductsByCategory(category.getId());
             }
         });

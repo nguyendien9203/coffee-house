@@ -50,7 +50,7 @@
          </children>
       </HBox>
       <Hyperlink fx:id="btnForgetPassword" layoutX="242.0" layoutY="296.0" onAction="#redirectForgetPassword" text="Quên mật khẩu?" textAlignment="RIGHT" textFill="#966c3a" />
-      <Button fx:id="btnLogin" layoutX="62.0" layoutY="340.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: #966C3A; -fx-background-radius: 5px;" text="Đăng nhập" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnLogin" layoutX="62.0" layoutY="340.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: #966C3A; -fx-background-radius: 5px;" text="Đăng nhập" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Button>
