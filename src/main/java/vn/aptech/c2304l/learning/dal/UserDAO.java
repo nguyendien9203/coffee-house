@@ -68,6 +68,31 @@ public class UserDAO extends DBContext {
         return false;
     }
 
+    public boolean checkUsernameExists(String username, String role) {
+        try {
+            String sql = "SELECT * FROM users WHERE username = ? AND role = ?";
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setString(2, role);
+            rs = stm.executeQuery();
+            if(rs.next()) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("checkUsernameExists(): " + e.getMessage());
+        } finally {
+            if (stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        return false;
+    }
+
     public User findUserByUsername(String username) {
         try {
             String sql = "SELECT * FROM users WHERE username = ?";
@@ -137,9 +162,8 @@ public class UserDAO extends DBContext {
             stm.setString(1, password);
             stm.setString(2, username);
 
-            int rowsAffected = stm.executeUpdate(); // Thực hiện câu lệnh UPDATE và trả về số dòng bị ảnh hưởng
+            int rowsAffected = stm.executeUpdate();
 
-            // Kiểm tra xem có dòng nào bị ảnh hưởng hay không
             if (rowsAffected > 0) {
             }
         } catch (SQLException e) {
@@ -153,31 +177,6 @@ public class UserDAO extends DBContext {
                 }
             }
         }
-    }
-
-
-    public String getRole(String username) {
-        try {
-            String sql = "SELECT role FROM users WHERE username = ?";
-            stm = connection.prepareStatement(sql);
-            stm.setString(1, username);
-            ResultSet resultSet = stm.executeQuery();
-
-            if (resultSet.next()) {
-                return resultSet.getString("role");
-            }
-        } catch (SQLException e) {
-            System.out.println("checkUsernameExists(): " + e.getMessage());
-        } finally {
-            if (stm != null) {
-                try {
-                    stm.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-        return null;
     }
 
     public ObservableList<User> findByUsernameAndStatus(String username, String status) {

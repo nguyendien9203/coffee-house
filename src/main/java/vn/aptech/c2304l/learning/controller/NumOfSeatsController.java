@@ -44,10 +44,10 @@ public class NumOfSeatsController implements Initializable {
 
     private Table table;
 
-    private ObservableList<Order> orders;
+    //private ObservableList<Order> orders;
 
     public void setData(Table table) {
-        this.orders = odao.findAll();
+        //this.orders = odao.findAll();
         this.table = table;
         if (table.getNumOfSeats() == 2) {
             txtTable2Seats.setText(String.valueOf(table.getTableNumber()));
@@ -91,7 +91,6 @@ public class NumOfSeatsController implements Initializable {
         txtTable2Seats = (Button) event.getSource();
         selectedTableNumber = Integer.parseInt(txtTable2Seats.getText());
         loadMenuItemScene(table, txtTable2Seats);
-        System.out.println("số bàn chọn: " + selectedTableNumber);
     }
 
     @FXML
@@ -99,7 +98,6 @@ public class NumOfSeatsController implements Initializable {
         txtTable4Seats = (Button) event.getSource();
         selectedTableNumber = Integer.parseInt(txtTable4Seats.getText());
         loadMenuItemScene(table, txtTable4Seats);
-        System.out.println("số bàn chọn: " + selectedTableNumber);
     }
 
     @FXML
@@ -107,7 +105,6 @@ public class NumOfSeatsController implements Initializable {
         txtTable6Seats = (Button) event.getSource();
         selectedTableNumber = Integer.parseInt(txtTable6Seats.getText());
         loadMenuItemScene(table, txtTable6Seats);
-        System.out.println("số bàn chọn: " + selectedTableNumber);
     }
 
     private void loadMenuItemScene(Table table, Button button) {
@@ -135,13 +132,4 @@ public class NumOfSeatsController implements Initializable {
             e.printStackTrace();
         }
     }
-
-//    public boolean checkOrderUnPaid(Order order) {
-//
-//    }
-//
-//    public void changeButtonColor(Button button) {
-//        if()
-//        button.setStyle("-fx-background-color: #966C3A;");
-//    }
 }

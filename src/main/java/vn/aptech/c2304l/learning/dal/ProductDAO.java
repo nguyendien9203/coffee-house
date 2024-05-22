@@ -51,6 +51,43 @@ public class ProductDAO extends DBContext {
         }
         return null;
     }
+
+    public ObservableList<Product> findAllProductActive() {
+        ObservableList<Product> products = FXCollections.observableArrayList();
+        try {
+            String sql = "SELECT * FROM products p JOIN categories c ON p.category_id = c.id WHERE p.status = 'Có sẵn'";
+            stm = connection.prepareStatement(sql);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt(1));
+
+                Category category = new Category();
+                category.setId(rs.getInt(2));
+                category.setName(rs.getString(11));
+                product.setCategory(category);
+
+                product.setName(rs.getString(3));
+                product.setPrice(rs.getBigDecimal(4));
+                product.setImage(rs.getString(5));
+                product.setDescription(rs.getString(6));
+                product.setStatus(rs.getString(7));
+                products.add(product);
+            }
+            return products;
+        } catch (Exception e) {
+            System.out.println("findAllProductActive(): " + e.getMessage());
+        } finally {
+            if(stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        return null;
+    }
     public boolean insert(Product product) {
         try {
             String sql = "INSERT INTO `products`\n" +
@@ -173,7 +210,7 @@ public class ProductDAO extends DBContext {
     public ObservableList<Product> findAllByCategory(int cateId) {
         ObservableList<Product> products = FXCollections.observableArrayList();
         try {
-            String sql = "SELECT * FROM products p JOIN categories c ON p.category_id = c.id WHERE c.id = ?";
+            String sql = "SELECT * FROM products p JOIN categories c ON p.category_id = c.id WHERE c.id = ? AND p.status = 'Có sẵn'";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, cateId);
             rs = stm.executeQuery();
@@ -387,16 +424,4 @@ public class ProductDAO extends DBContext {
         }
         return null;
     }
-
-
-    public static void main(String[] args) {
-        ProductDAO pdao = new ProductDAO();
-        ObservableList<Product> products = pdao.findAllByCategory(1);
-        for(Product p : products) {
-            System.out.println(p);
-        }
-    }
-
-
-
 }

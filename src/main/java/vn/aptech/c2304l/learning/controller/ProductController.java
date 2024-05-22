@@ -26,8 +26,10 @@ import vn.aptech.c2304l.learning.dal.ProductDAO;
 import vn.aptech.c2304l.learning.model.Category;
 import vn.aptech.c2304l.learning.model.Product;
 import vn.aptech.c2304l.learning.model.Table;
+import vn.aptech.c2304l.learning.model.User;
 import vn.aptech.c2304l.learning.utils.AlertConfirmation;
 import vn.aptech.c2304l.learning.utils.AlertNotification;
+import vn.aptech.c2304l.learning.utils.UserSession;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -47,6 +49,8 @@ public class ProductController implements Initializable {
     private ProductDAO pdao = new ProductDAO();
     private AlertNotification alertNotification = new AlertNotification();
     private AlertConfirmation alertConfirmation = new AlertConfirmation();
+
+    private User loggedInUser = UserSession.getInstance().getLoggedInUser();
 
     @FXML
     private VBox btnAuthentication;
@@ -126,6 +130,8 @@ public class ProductController implements Initializable {
     @FXML
     private TableView<Product> tableView;
 
+    @FXML
+    private Label labelFullName;
     private String[] listOptions = {"Xóa bộ lọc", "Giá tăng dần", "Giá giảm dần"};
 
     public void listFilter() {
@@ -163,6 +169,35 @@ public class ProductController implements Initializable {
         }
 
         txtStatus.setItems(statusList);
+    }
+
+    private String role;
+
+    public void setRole(String role) {
+        this.role = role;
+        updateUI();
+    }
+
+    private void updateUI() {
+        if(Objects.equals(role, "ADMIN")) {
+            btnProduct.setVisible(true);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(true);
+            btnAuthentication.setVisible(true);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(true);
+            btnTable.setVisible(true);
+            btnCategory.setVisible(true);
+        } else {
+            btnProduct.setVisible(false);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(false);
+            btnAuthentication.setVisible(false);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(true);
+            btnTable.setVisible(false);
+            btnCategory.setVisible(false);
+        }
     }
 
     private  int id;
@@ -387,11 +422,6 @@ public class ProductController implements Initializable {
             return;
         }
 
-//        if(pdao.findByName(name)) {
-//            alertNotification.showAlert("Thông báo", "Sản phẩm " + name + " đã tồn tại");
-//            return;
-//        }
-
         if(txtId.getText() != null) {
             id = Integer.parseInt(txtId.getText());
         }
@@ -614,6 +644,11 @@ public class ProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        if (loggedInUser != null) {
+            labelFullName.setText(loggedInUser.getFullname());
+            this.setRole(loggedInUser.getRole().toString());
+        }
 
         categories();
         statusList();

@@ -848,7 +848,6 @@ public class OrderDAO extends DBContext {
                 }
             }
         }
-        System.out.println("Total revenue in month: " + result); // Debugging output
         return result;
     }
 
@@ -880,13 +879,5 @@ public class OrderDAO extends DBContext {
     }
 
 
-
-    public static void main(String[] args) {
-        OrderDAO orderDAO = new OrderDAO();
-        BigDecimal total = orderDAO.totalRevenueInMonth();
-        System.out.println(total);
-
-
-    }
 
 }

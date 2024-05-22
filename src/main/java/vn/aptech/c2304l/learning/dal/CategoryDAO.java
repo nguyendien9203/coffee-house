@@ -64,32 +64,6 @@ public class CategoryDAO extends DBContext {
         return -1;
     }
 
-    public Category findById(int id) {
-        try {
-            String sql = "SELECT * FROM categories WHERE id = ?";
-            stm = connection.prepareStatement(sql);
-            stm.setInt(1, id);
-            rs = stm.executeQuery();
-            if(rs.next()) {
-                Category category = new Category();
-                category.setId(rs.getInt(1));
-                category.setName(rs.getString(2));
-                return category;
-            }
-        } catch (Exception e) {
-            System.out.println("findById(): " + e.getMessage());
-        } finally {
-            if(stm != null) {
-                try {
-                    stm.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-        return null;
-    }
-
     public boolean findByName(String name) {
         try {
             String sql = "SELECT * FROM categories WHERE name = ?";

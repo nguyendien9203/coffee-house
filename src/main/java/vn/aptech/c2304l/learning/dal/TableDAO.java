@@ -45,33 +45,6 @@ public class TableDAO extends DBContext {
         return null;
     }
 
-    public Table findById(int id) {
-        try {
-            String sql = "SELECT * FROM tables WHERE id = ?";
-            stm = connection.prepareStatement(sql);
-            stm.setInt(1, id);
-            rs = stm.executeQuery();
-            if(rs.next()) {
-                Table table = new Table();
-                table.setId(rs.getInt(1));
-                table.setTableNumber(rs.getInt(2));
-                table.setNumOfSeats(rs.getInt(3));
-                return table;
-            }
-        }catch (Exception e) {
-            System.out.println("findById(): " + e.getMessage());
-        }finally {
-            if(stm != null) {
-                try {
-                    stm.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-        return null;
-    }
-
     public boolean findByTableNumber(int tableNumber) {
         try {
             String sql = "SELECT * FROM tables WHERE table_number = ?";
@@ -106,7 +79,7 @@ public class TableDAO extends DBContext {
                 return true;
             }
         }catch (Exception e) {
-            System.out.println("findById(): " + e.getMessage());
+            System.out.println("findByTableNumberAndSeats(): " + e.getMessage());
         }finally {
             if(stm != null) {
                 try {

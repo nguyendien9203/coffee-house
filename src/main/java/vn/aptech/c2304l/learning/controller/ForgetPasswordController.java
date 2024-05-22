@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import vn.aptech.c2304l.learning.Main;
+import vn.aptech.c2304l.learning.constant.UserRole;
 import vn.aptech.c2304l.learning.dal.UserDAO;
 import vn.aptech.c2304l.learning.utils.AlertNotification;
 import vn.aptech.c2304l.learning.utils.BcryptUtil;
@@ -74,63 +75,67 @@ public class ForgetPasswordController implements Initializable {
     private String pass;
     private String repass;
 
+    @FXML
+    public void createNewPassword() {
+        username = txt_username.getText().trim();
+
+        if (!username.isEmpty()) {
+            if (userDAO.checkUsernameExists(username, UserRole.EMPLOYEE.toString())) {
+                alert.showAlert("Thông báo","Đã tìm thấy tài khoản");
+                confirmNewPasswordPane.setVisible(true);
+                forgetPasswordPane.setVisible(false);
+            } else {
+
+                alert.showAlert("Lỗi", "Tài khoản '" + username + "' không tồn tại");
+            }
+        } else {
+            AlertNotification alert = new AlertNotification();
+            alert.showAlert("Lỗi", "Vui lòng nhập tên tài khoản");
+        }
+    }
+
+    @FXML
+    public void resetPassword() {
+        pass = newPassword.getText().trim();
+        repass = confirmNewPassword.getText().trim();
+
+        if (!pass.matches("^[a-z0-9]{8,}$")) {
+            AlertNotification alert = new AlertNotification();
+            alert.showAlert("Thông báo","Mật khẩu phải ít nhất 8 ký tự, có chứa ít nhất 1 số, 1 chữ cái in thường");
+            return;
+        }
+
+        if(pass.equals(repass)){
+            alert.showAlert("Thông báo","Đổi mật khẩu thành công");
+            String hashPassword = bcryptUtil.hashPassword(pass);
+            userDAO.changePassword(username,hashPassword);
+
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(Main.class.getResource("/login.fxml"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) btnConfirm.getScene().getWindow();
+            stage.setTitle("Login");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+        }else{
+            alert.showAlert("Lỗi","Mật khẩu không khớp");
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        btnCreateNewPassword.setOnAction(eh -> {
-            // Lấy giá trị từ trường txt_username khi người dùng nhấn nút
-            username = txt_username.getText().trim();
-
-            // Kiểm tra xem username có giá trị không trước khi sử dụng
-            if (!username.isEmpty()) {
-                if (userDAO.checkUsernameExists(username)) {
-                        alert.showAlert("Thông báo","Đã tìm thấy tài khoản");
-                        confirmNewPasswordPane.setVisible(true);
-                        forgetPasswordPane.setVisible(false);
-                } else {
-
-                    alert.showAlert("Lỗi", "Tài khoản '" + username + "' không tồn tại");
-                }
-            } else {
-                AlertNotification alert = new AlertNotification();
-                alert.showAlert("Lỗi", "Vui lòng nhập tên tài khoản");
-            }
-        });
-
         btnForgetPassword.setOnAction(eh -> {
             confirmNewPasswordPane.setVisible(false);
             forgetPasswordPane.setVisible(true);
-        });
-
-
-
-        btnConfirm.setOnAction(eh -> {
-             pass = newPassword.getText().trim();
-             repass = confirmNewPassword.getText().trim();
-
-            if(pass.equals(repass)){
-                alert.showAlert("Thông báo","Đổi mật khẩu thành công");
-                String hashPassword = bcryptUtil.hashPassword(pass);
-                userDAO.changePassword(username,hashPassword);
-
-                Parent root = null;
-                try {
-                    root = FXMLLoader.load(Main.class.getResource("/login.fxml"));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
-                Scene scene = new Scene(root);
-
-                Stage stage = (Stage) btnConfirm.getScene().getWindow();
-                stage.setTitle("Login");
-                stage.setResizable(false);
-                stage.setScene(scene);
-                stage.show();
-            }else{
-                alert.showAlert("Lỗi","Mật khẩu không khớp");
-            }
         });
     }
 

@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.OrderController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vn.aptech.c2304l.learning.controller.OrderController">
     <left>
         <AnchorPane prefHeight="70.0" prefWidth="150.0" styleClass="sidebar" stylesheets="@style/sidebar.css" BorderPane.alignment="CENTER">
             <children>
@@ -132,10 +132,10 @@
                               </Button>
                            </children>
                            <VBox.margin>
-                              <Insets bottom="10.0" top="98.0" />
+                              <Insets bottom="10.0" top="88.0" />
                            </VBox.margin>
                         </HBox>
-                        <TableView fx:id="tableView" prefHeight="557.0" prefWidth="742.0" style="-fx-background-color: #fff;">
+                        <TableView fx:id="tableView" prefHeight="569.0" prefWidth="716.0" style="-fx-background-color: #fff;">
                           <columns>
                             <TableColumn fx:id="colCodeBill" prefWidth="172.00002402067184" text="Mã hóa đơn" />
                             <TableColumn fx:id="colTotalBill" prefWidth="315.1999969482422" text="Tổng thanh toán" />
@@ -150,7 +150,7 @@
                         <Insets left="15.0" right="15.0" />
                      </padding>
                   </VBox>
-                  <VBox fx:id="vBoxBillDetail" layoutX="747.0" layoutY="93.0" prefHeight="607.0" prefWidth="359.0" style="-fx-background-color: #FFF;">
+                  <VBox fx:id="vBoxBillDetail" layoutX="747.0" layoutY="93.0" prefHeight="607.0" prefWidth="359.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="87.0">
                      <children>
                         <HBox alignment="CENTER" prefHeight="27.0" prefWidth="388.0">
                            <children>

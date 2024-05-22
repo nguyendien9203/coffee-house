@@ -28,6 +28,10 @@ public class UniqueCodeBillGenerator {
         return instance;
     }
 
+    public static void main(String[] args) {
+        System.out.println(UUID.randomUUID());
+    }
+
 
 
 }

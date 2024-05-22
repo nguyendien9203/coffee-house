@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,11 +17,18 @@ import vn.aptech.c2304l.learning.constant.UserRole;
 import vn.aptech.c2304l.learning.constant.UserStatus;
 import vn.aptech.c2304l.learning.dal.UserDAO;
 import vn.aptech.c2304l.learning.model.User;
+import vn.aptech.c2304l.learning.utils.AlertNotification;
+import vn.aptech.c2304l.learning.utils.UserSession;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class AuthenticationController {
+public class AuthenticationController implements Initializable {
+    private User loggedInUser = UserSession.getInstance().getLoggedInUser();
+    private AlertNotification alert = new AlertNotification();
 
     @FXML
     private VBox btnAuthentication;
@@ -68,20 +76,62 @@ public class AuthenticationController {
 
     @FXML
     private TextField fullnameField;
-    @FXML
-    private TextField usernameField;
-    @FXML
-    private ComboBox<UserStatus> statusComboBox;
-    @FXML
-    private ComboBox<UserStatus> statusFindComboBox;
-    @FXML
-    private ComboBox<String> roleComboBox;
-    @FXML
-    private Button updateButton;
-    private ObservableList<User> userList;
 
     @FXML
-    public void initialize() {
+    private TextField usernameField;
+
+    @FXML
+    private ComboBox<UserStatus> statusComboBox;
+
+    @FXML
+    private ComboBox<UserStatus> statusFindComboBox;
+
+    @FXML
+    private ComboBox<String> roleComboBox;
+
+    @FXML
+    private Button updateButton;
+
+    @FXML
+    private Label labelFullName;
+    private ObservableList<User> userList;
+
+    private String role;
+
+    public void setRole(String role) {
+        this.role = role;
+        updateUI();
+    }
+
+    private void updateUI() {
+        if(Objects.equals(role, "ADMIN")) {
+            btnProduct.setVisible(true);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(true);
+            btnAuthentication.setVisible(true);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(true);
+            btnTable.setVisible(true);
+            btnCategory.setVisible(true);
+        } else {
+            btnProduct.setVisible(false);
+            btnOrder.setVisible(true);
+            btnStatistic.setVisible(false);
+            btnAuthentication.setVisible(false);
+            btnLogout.setVisible(true);
+            btnMenu.setVisible(true);
+            btnTable.setVisible(false);
+            btnCategory.setVisible(false);
+        }
+    }
+
+    @FXML
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (loggedInUser != null) {
+            labelFullName.setText(loggedInUser.getFullname());
+            this.setRole(loggedInUser.getRole().toString());
+        }
+
         userDAO = new UserDAO();
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         fullnameColumn.setCellValueFactory(new PropertyValueFactory<>("fullname"));
@@ -111,12 +161,21 @@ public class AuthenticationController {
 
     @FXML
     private void handleUpdateAction() {
+        if(fullnameField.getText() == null || fullnameField.getText().isBlank()) {
+            alert.showAlert("Thông báo", "Vui lòng nhập đầy đủ thông tin.");
+            return;
+        }
+
         User user = new User();
         user.setFullname(fullnameField.getText());
         user.setUsername(usernameField.getText());
         user.setRole(UserRole.valueOf(roleComboBox.getValue()));
         user.setStatus(statusComboBox.getValue());
-        userDAO.update(user);
+        if(userDAO.update(user)) {
+            alert.showAlert("Thông báo", "Cập nhật thành công.");
+        } else {
+            alert.showAlert("Thông báo", "Cập nhật thất bại.");
+        }
         userTable.refresh();
         userTable.setItems(getUserData());
     }
